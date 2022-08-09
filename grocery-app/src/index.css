@@ -96,10 +96,6 @@ body {
   cursor: pointer;
 }
 
-.form-control {
-  margin: 20px 0;
-}
-
 .form-control label {
   display: block;
 }

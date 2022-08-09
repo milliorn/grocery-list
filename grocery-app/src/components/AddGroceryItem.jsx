@@ -36,7 +36,7 @@ const AddGroceryItem = ({ onSave }) => {
 
   return (
     <form className="add-form mb-4" onSubmit={onSubmit}>
-      <div className="form-control">
+      <div className="form-control my-4 mx-0">
         <label>Item</label>
         <input
           type="text"
@@ -45,7 +45,7 @@ const AddGroceryItem = ({ onSave }) => {
           onChange={(e) => setText(e.target.value)}
         />
       </div>
-      <div className="form-control">
+      <div className="form-control my-4 mx-0">
         <label>Quantity</label>
         <input
           type="text"
