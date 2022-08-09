@@ -35,7 +35,7 @@ const AddGroceryItem = ({ onSave }) => {
   };
 
   return (
-    <form className="add-form" onSubmit={onSubmit}>
+    <form className="add-form mb-4" onSubmit={onSubmit}>
       <div className="form-control">
         <label>Item</label>
         <input
