@@ -37,7 +37,7 @@ const AddGroceryItem = ({ onSave }) => {
   return (
     <form className="add-form mb-4" onSubmit={onSubmit}>
       <div className="form-control my-4 mx-0">
-        <label>Item</label>
+        <label className="block">Item</label>
         <input
           type="text"
           placeholder="Example: Bread"
@@ -46,7 +46,7 @@ const AddGroceryItem = ({ onSave }) => {
         />
       </div>
       <div className="form-control my-4 mx-0">
-        <label>Quantity</label>
+        <label className="block">Quantity</label>
         <input
           type="text"
           placeholder="Example: 1 loaf"

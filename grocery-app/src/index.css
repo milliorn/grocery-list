@@ -96,10 +96,6 @@ body {
   cursor: pointer;
 }
 
-.form-control label {
-  display: block;
-}
-
 .form-control input {
   font-size: 17px;
   height: 40px;
