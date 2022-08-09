@@ -96,13 +96,6 @@ body {
   cursor: pointer;
 }
 
-.form-control input {
-  font-size: 17px;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  width: 100%;
-}
 
 .form-control input:focus {
   outline: 0;
