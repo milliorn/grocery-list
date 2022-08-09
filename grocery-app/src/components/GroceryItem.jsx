@@ -1,5 +1,4 @@
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
-import "../index.css";
 
 const GroceryItem = ({ item, onDelete, onEdit }) => {
   return (
