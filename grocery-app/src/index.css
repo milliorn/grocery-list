@@ -96,11 +96,6 @@ body {
   cursor: pointer;
 }
 
-
-.form-control input:focus {
-  outline: 0;
-}
-
 @media (max-width: 768px) {
   .spinnerContainer {
     margin: 250px auto 0 auto;
