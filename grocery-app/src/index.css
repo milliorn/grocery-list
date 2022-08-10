@@ -16,10 +16,6 @@ body {
   height: 600px;
 }
 
-.app-header {
-  font-family: "Josefin Sans", sans-serif;
-}
-
 .container {
   background-color: #ccc;
   border-radius: 5px;
