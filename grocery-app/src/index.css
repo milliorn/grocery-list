@@ -46,10 +46,6 @@ body {
   display: none;
 }
 
-.itemBold {
-  font-weight: bold;
-}
-
 .delIcon {
   color: red;
   cursor: pointer;
