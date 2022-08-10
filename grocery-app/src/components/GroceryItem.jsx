@@ -5,10 +5,10 @@ const GroceryItem = ({ item, onDelete, onEdit }) => {
     <div>
       <div className="item bg-zinc-100 rounded-md cursor-pointer flex justify-between	my-2 mx-auto max-w-full	overflow-scroll	py-3 px-5">
         <div>
-          <p className="">
+          <p>
             <span className="itemBold font-bold">Item Name: </span> {item.text}
           </p>
-          <p className="">
+          <p>
             <span className="itemBold font-bold">Quantity: </span>
             {item.quantity}
           </p>

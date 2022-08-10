@@ -16,18 +16,6 @@ body {
   height: 600px;
 }
 
-.spinnerContainer {
-  margin: 20% auto;
-  max-width: 15%;
-}
-
-.header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
 .app-header {
   font-family: "Josefin Sans", sans-serif;
 }
