@@ -42,11 +42,6 @@ body {
   padding: 30px;
 }
 
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
 .item {
   background: #f4f4f4;
   border-radius: 5px;
