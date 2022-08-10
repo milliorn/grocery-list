@@ -21,7 +21,10 @@ const GroceryItem = ({ item, onDelete, onEdit }) => {
             />
           </p>
           <p>
-            <FaPencilAlt onClick={() => onEdit(item.id)} className="editIcon" />
+            <FaPencilAlt
+              onClick={() => onEdit(item.id)}
+              className="editIcon text-blue-500 cursor-pointer"
+            />
           </p>
         </div>
       </div>

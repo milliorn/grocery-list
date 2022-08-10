@@ -46,11 +46,6 @@ body {
   display: none;
 }
 
-.editIcon {
-  color: blue;
-  cursor: pointer;
-}
-
 @media (max-width: 768px) {
   .spinnerContainer {
     margin: 250px auto 0 auto;
