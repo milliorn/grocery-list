@@ -42,11 +42,6 @@ body {
   padding: 30px;
 }
 
-.btn:focus {
-  color: white;
-  outline: none;
-}
-
 .btn-block {
   display: block;
   width: 100%;
