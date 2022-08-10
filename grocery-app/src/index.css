@@ -46,11 +46,6 @@ body {
   display: none;
 }
 
-.delIcon {
-  color: red;
-  cursor: pointer;
-}
-
 .editIcon {
   color: blue;
   cursor: pointer;
