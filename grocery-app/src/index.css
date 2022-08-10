@@ -9,6 +9,7 @@
 }
 
 body {
+  background-image: url("https://source.unsplash.com/random/?grocery");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,13 +18,7 @@ body {
 }
 
 .container {
-  background-color: #ccc;
-  border-radius: 5px;
-  margin: 30px auto;
-  max-width: 600px;
   min-height: 300px;
-  overflow: auto;
-  padding: 30px;
 }
 
 .item::-webkit-scrollbar {

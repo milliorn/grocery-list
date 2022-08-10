@@ -93,7 +93,7 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <div className="container bg-zinc-300 rounded-md my-7 mx-auto max-w-2xl	overflow-auto p-7">
         <Header
           showForm={() => setShowItem(!showItem)}
           changeTextAndColor={showItem}
