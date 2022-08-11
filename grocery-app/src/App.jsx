@@ -101,7 +101,9 @@ function App() {
 
         {showItem && <AddGroceryItem onSave={createItem} />}
 
-        <h3>Items Remaining: {items.length}</h3>
+        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+          Items Remaining: {items.length}
+        </h3>
 
         {items.length > 0 ? (
           <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
