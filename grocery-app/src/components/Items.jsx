@@ -1,5 +1,4 @@
 import GroceryItem from "./GroceryItem";
-import "../index.css";
 
 const Items = ({ items, onDelete, onEdit }) => {
   return (

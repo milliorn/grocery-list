@@ -64,7 +64,7 @@ function App() {
    * Update
    * @param {*} id
    */
-  const editTask = (id) => {
+  const updateTask = (id) => {
     const text = prompt("Item Name");
     const quantity = prompt("Quantity");
     const data = JSON.parse(localStorage.getItem("itemAdded"));
@@ -93,7 +93,7 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <div className="container max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
         <Header
           showForm={() => setShowItem(!showItem)}
           changeTextAndColor={showItem}
@@ -101,12 +101,14 @@ function App() {
 
         {showItem && <AddGroceryItem onSave={createItem} />}
 
-        <h3>Items Remaining: {items.length}</h3>
+        <h3 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+          Items Remaining: {items.length}
+        </h3>
 
         {items.length > 0 ? (
-          <Items items={items} onDelete={deleteItem} onEdit={editTask} />
+          <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
         ) : (
-          "No items left!"
+          <span className="text-xl leading-10 ">No items left!</span>
         )}
       </div>
     </>
