@@ -35,21 +35,21 @@ const AddGroceryItem = ({ onSave }) => {
   };
 
   return (
-    <form className="add-form mb-4" onSubmit={onSubmit}>
-      <div className="form-control my-4 mx-0">
+    <form className="mb-4 add-form" onSubmit={onSubmit}>
+      <div className="mx-0 my-4 form-control">
         <label className="block">Item</label>
         <input
-          className="text-xs h-10 m-1 py-1 px-2 w-full focus:outline-none"
+          className="w-full h-10 px-2 py-1 m-1 text-xs focus:outline-none text-zinc-900"
           type="text"
           placeholder="Example: Bread"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
       </div>
-      <div className="form-control my-4 mx-0">
+      <div className="mx-0 my-4 form-control">
         <label className="block">Quantity</label>
         <input
-          className="text-xs h-10 m-1 py-1 px-2 w-full focus:outline-none"
+          className="w-full h-10 px-2 py-1 m-1 text-xs focus:outline-none text-zinc-900"
           type="text"
           placeholder="Example: 1 loaf"
           value={quantity}
@@ -59,7 +59,7 @@ const AddGroceryItem = ({ onSave }) => {
 
       <input
         type="submit"
-        className="btn btn-block block w-full bg-zinc-900 text-zinc-50 border rounded-md border-none	cursor-pointer inline-block	text-sm m-1 py-3 px-5 no-underline focus:text-zinc-50 focus:outline-none"
+        className="block inline-block w-full px-5 py-3 m-1 text-sm no-underline border border-none rounded-md cursor-pointer btn btn-block bg-zinc-500 text-zinc-50 focus:text-zinc-50 focus:outline-none"
         value="Save Task"
       />
     </form>

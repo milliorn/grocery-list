@@ -64,7 +64,7 @@ function App() {
    * Update
    * @param {*} id
    */
-  const editTask = (id) => {
+  const updateTask = (id) => {
     const text = prompt("Item Name");
     const quantity = prompt("Quantity");
     const data = JSON.parse(localStorage.getItem("itemAdded"));
@@ -93,7 +93,7 @@ function App() {
 
   return (
     <>
-      <div className="container bg-zinc-300 rounded-md my-7 mx-auto max-w-2xl	overflow-auto p-7">
+      <div className="container max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
         <Header
           showForm={() => setShowItem(!showItem)}
           changeTextAndColor={showItem}
@@ -104,7 +104,7 @@ function App() {
         <h3>Items Remaining: {items.length}</h3>
 
         {items.length > 0 ? (
-          <Items items={items} onDelete={deleteItem} onEdit={editTask} />
+          <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
         ) : (
           "No items left!"
         )}
