@@ -37,7 +37,7 @@ const AddGroceryItem = ({ onSave }) => {
   return (
     <form className="mb-4 add-form" onSubmit={onSubmit}>
       <div className="mx-0 my-4 form-control">
-        <label className="block">Item</label>
+        <label className="block text-xl sm:text-2xl md:text-3xl">Item</label>
         <input
           className="w-full h-10 px-2 py-1 m-1 text-xs focus:outline-none text-zinc-900"
           type="text"
@@ -47,7 +47,9 @@ const AddGroceryItem = ({ onSave }) => {
         />
       </div>
       <div className="mx-0 my-4 form-control">
-        <label className="block">Quantity</label>
+        <label className="block text-xl sm:text-2xl md:text-3xl">
+          Quantity
+        </label>
         <input
           className="w-full h-10 px-2 py-1 m-1 text-xs focus:outline-none text-zinc-900"
           type="text"
