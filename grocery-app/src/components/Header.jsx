@@ -3,11 +3,13 @@ import Button from "./Button";
 
 const Header = ({ showForm, changeTextAndColor }) => {
   return (
-    <header className="header">
-      <h2 className="app-header">Grocery List</h2>
+    <header className="flex items-center justify-between mb-4 header">
+      <h2 className="font-serif text-xl app-header sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+        Grocery List
+      </h2>
       <Button
-        onClick={showForm}
         color={changeTextAndColor ? "red" : "green"}
+        onClick={showForm}
         text={changeTextAndColor ? "Close" : "Add"}
       />
     </header>
