@@ -2,6 +2,7 @@
   "name": "grocery-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://milliorn.github.io/Grocery-List",
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -16,7 +17,9 @@
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "minify": "npx tailwindcss -o build.css --minify"
+    "minify": "npx tailwindcss -o build.css --minify",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +41,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
+    "gh-pages": "^4.0.0",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   }
