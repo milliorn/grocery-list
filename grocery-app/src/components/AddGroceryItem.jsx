@@ -39,7 +39,7 @@ const AddGroceryItem = ({ onSave }) => {
       <div className="mx-0 my-4 form-control">
         <label className="block text-xl sm:text-2xl md:text-3xl">Item</label>
         <input
-          className="w-full h-10 px-2 py-1 m-1 text-xs text-lg focus:outline-none text-zinc-900"
+          className="w-full h-10 px-2 py-1 m-1 text-lg focus:outline-none text-zinc-900"
           type="text"
           placeholder="Example: Bread"
           value={text}
@@ -51,7 +51,7 @@ const AddGroceryItem = ({ onSave }) => {
           Quantity
         </label>
         <input
-          className="w-full h-10 px-2 py-1 m-1 text-xs text-lg focus:outline-none text-zinc-900"
+          className="w-full h-10 px-2 py-1 m-1 text-lg focus:outline-none text-zinc-900"
           type="text"
           placeholder="Example: 1 loaf"
           value={quantity}
