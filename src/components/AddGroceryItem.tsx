@@ -1,10 +1,19 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 
+/**
+ * 
+ * @param 
+ * @returns 
+ */
 function AddGroceryItem({ onSave }: any): JSX.Element {
   const [text, setText] = useState("");
   const [quantity, setQuantity] = useState("");
 
+  /**
+   * 
+   * @param e 
+   */
   function onSubmit(e: { preventDefault: () => void }): void {
     e.preventDefault();
 

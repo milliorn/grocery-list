@@ -1,5 +1,10 @@
 import GroceryItem from "./GroceryItem";
 
+/**
+ * 
+ * @param param0 
+ * @returns 
+ */
 function Items({ items, onDelete, onEdit }: any): JSX.Element {
   return (
     <>

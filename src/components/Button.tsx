@@ -1,6 +1,7 @@
 /**
- * @param {*} param0 
- * @returns 
+ *
+ * @param
+ * @returns
  */
 function Button({ color, text, onClick }: any): JSX.Element {
   return (

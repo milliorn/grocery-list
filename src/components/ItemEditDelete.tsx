@@ -1,5 +1,10 @@
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
 
+/**
+ * 
+ * @param param0 
+ * @returns 
+ */
 export function ItemEditDelete({ onDelete, item, onEdit }: { onDelete: any; item: any; onEdit: any; }): JSX.Element {
   return (
     <div>

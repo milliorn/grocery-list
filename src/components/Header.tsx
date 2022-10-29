@@ -1,5 +1,10 @@
 import Button from "./Button";
 
+/**
+ * 
+ * @param param0 
+ * @returns 
+ */
 function Header({ showForm, changeTextAndColor }: any): JSX.Element {
   return (
     <header className="flex items-center justify-between mb-4 header">
