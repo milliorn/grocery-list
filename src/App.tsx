@@ -5,11 +5,12 @@ import AddGroceryItem from "./components/AddGroceryItem";
 import Header from "./components/Header";
 import Items from "./components/Items";
 
-function App() {
-  const [items, setItems] = useState([]);
+function App(): JSX.Element {
+  const [items, setItems] = useState<any[]>([]);
   const [showItem, setShowItem] = useState(false);
 
-  const getGrocery = JSON.parse(localStorage.getItem("itemAdded"));
+  /* https://stackoverflow.com/a/46915314/11986604 */
+  const getGrocery = JSON.parse(localStorage.getItem("itemAdded")!);
 
   /**
    * Read
@@ -27,7 +28,7 @@ function App() {
    * Create
    * @param {*} item
    */
-  const createItem = (item) => {
+  function createItem(item: any): void {
     const id = uuidv4();
     const newItem = { id, ...item };
 
@@ -40,13 +41,13 @@ function App() {
     });
 
     localStorage.setItem("itemAdded", JSON.stringify([...items, newItem]));
-  };
+  }
 
   /**
    * Delete
    * @param {*} id
    */
-  const deleteItem = (id) => {
+  function deleteItem(id: any): void {
     const deleteItem = items.filter((item) => item.id !== id);
 
     setItems(deleteItem);
@@ -58,18 +59,18 @@ function App() {
     });
 
     localStorage.setItem("itemAdded", JSON.stringify(deleteItem));
-  };
+  }
 
   /**
    * Update
    * @param {*} id
    */
-  const updateTask = (id) => {
+  function updateTask(id: any): void {
     const text = prompt("Item Name");
     const quantity = prompt("Quantity");
-    const data = JSON.parse(localStorage.getItem("itemAdded"));
+    const data = JSON.parse(localStorage.getItem("itemAdded")!);
 
-    const myData = data.map((x) => {
+    const myData = data.map((x: { id: any }) => {
       if (x.id === id) {
         return {
           ...x,
@@ -89,29 +90,27 @@ function App() {
 
     localStorage.setItem("itemAdded", JSON.stringify(myData));
     window.location.reload();
-  };
+  }
 
   return (
-    <>
-      <div className="container max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
-        <Header
-          showForm={() => setShowItem(!showItem)}
-          changeTextAndColor={showItem}
-        />
+    <div className="container max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
+    <Header
+      showForm={() => setShowItem(!showItem)}
+      changeTextAndColor={showItem}
+    />
 
-        {showItem && <AddGroceryItem onSave={createItem} />}
+    {showItem && <AddGroceryItem onSave={createItem} />}
 
-        <h3 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-          Items Remaining: {items.length}
-        </h3>
+    <h3 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+      Items Remaining: {items.length}
+    </h3>
 
-        {items.length > 0 ? (
-          <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
-        ) : (
-          <span className="text-xl leading-10 ">No items left!</span>
-        )}
-      </div>
-    </>
+    {items.length > 0 ? (
+      <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
+    ) : (
+      <span className="text-xl leading-10 ">No items left!</span>
+    )}
+  </div>
   );
 }
 
