@@ -1,7 +1,6 @@
-import React from "react";
 import Button from "./Button";
 
-const Header = ({ showForm, changeTextAndColor }) => {
+function Header({ showForm, changeTextAndColor }: any): JSX.Element {
   return (
     <header className="flex items-center justify-between mb-4 header">
       <h2 className="font-serif text-xl app-header sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
@@ -14,6 +13,6 @@ const Header = ({ showForm, changeTextAndColor }) => {
       />
     </header>
   );
-};
+}
 
 export default Header;
