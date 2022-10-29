@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-const AddGroceryItem = ({ onSave }) => {
+function AddGroceryItem({ onSave }: any): JSX.Element {
   const [text, setText] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  const onSubmit = (e) => {
+  function onSubmit(e: { preventDefault: () => void }): void {
     e.preventDefault();
 
     if (!text && !quantity) {
@@ -32,7 +32,7 @@ const AddGroceryItem = ({ onSave }) => {
 
     setText("");
     setQuantity("");
-  };
+  }
 
   return (
     <form className="mb-4 add-form" onSubmit={onSubmit}>
@@ -66,6 +66,6 @@ const AddGroceryItem = ({ onSave }) => {
       />
     </form>
   );
-};
+}
 
 export default AddGroceryItem;
