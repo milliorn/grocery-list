@@ -5,6 +5,10 @@ import AddGroceryItem from "./components/AddGroceryItem";
 import Header from "./components/Header";
 import Items from "./components/Items";
 
+/**
+ *
+ * @returns JSX.Element
+ */
 function App(): JSX.Element {
   const [items, setItems] = useState<any[]>([]);
   const [showItem, setShowItem] = useState(false);
@@ -94,23 +98,23 @@ function App(): JSX.Element {
 
   return (
     <div className="container max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
-    <Header
-      showForm={() => setShowItem(!showItem)}
-      changeTextAndColor={showItem}
-    />
+      <Header
+        showForm={() => setShowItem(!showItem)}
+        changeTextAndColor={showItem}
+      />
 
-    {showItem && <AddGroceryItem onSave={createItem} />}
+      {showItem && <AddGroceryItem onSave={createItem} />}
 
-    <h3 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-      Items Remaining: {items.length}
-    </h3>
+      <h3 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+        Items Remaining: {items.length}
+      </h3>
 
-    {items.length > 0 ? (
-      <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
-    ) : (
-      <span className="text-xl leading-10 ">No items left!</span>
-    )}
-  </div>
+      {items.length > 0 ? (
+        <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
+      ) : (
+        <span className="text-xl leading-10 ">No items left!</span>
+      )}
+    </div>
   );
 }
 
