@@ -1,4 +1,9 @@
-const Button = ({ color, text, onClick }) => {
+/**
+ *
+ * @param
+ * @returns
+ */
+function Button({ color, text, onClick }: any): JSX.Element {
   return (
     <button
       onClick={onClick}
@@ -8,6 +13,6 @@ const Button = ({ color, text, onClick }) => {
       {text}
     </button>
   );
-};
+}
 
 export default Button;

@@ -1,9 +1,14 @@
 import GroceryItem from "./GroceryItem";
 
-const Items = ({ items, onDelete, onEdit }) => {
+/**
+ * 
+ * @param param0 
+ * @returns 
+ */
+function Items({ items, onDelete, onEdit }: any): JSX.Element {
   return (
     <>
-      {items.map((item) => (
+      {items.map((item: { id: any }) => (
         <GroceryItem
           key={item.id}
           item={item}
@@ -13,6 +18,6 @@ const Items = ({ items, onDelete, onEdit }) => {
       ))}
     </>
   );
-};
+}
 
 export default Items;
