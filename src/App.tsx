@@ -16,7 +16,7 @@ function App(): JSX.Element {
    * Read
    */
   useEffect(() => {
-    if (getGrocery == null) {
+    if (getGrocery === null) {
       setItems([]);
     } else {
       setItems(getGrocery);
