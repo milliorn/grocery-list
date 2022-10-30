@@ -8,6 +8,7 @@
 [![OSSAR](https://github.com/milliorn/Grocery-List/actions/workflows/ossar.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/ossar.yml)
 [![pages-build-deployment](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment)
 [![pmd](https://github.com/milliorn/Grocery-List/actions/workflows/pmd.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/pmd.yml)
+[![DeepSource](https://deepsource.io/gh/milliorn/Grocery-List.svg/?label=active+issues&show_trend=true&token=L2I44ke3pYUYFgF91nnXCPg6)](https://deepsource.io/gh/milliorn/Grocery-List/?ref=repository-badge)
 
 react-icons -> https://github.com/react-icons/react-icons
 
