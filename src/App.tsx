@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+/* react */
+import { SetStateAction, useEffect, useState } from "react";
+/* npm */
 import Swal from "sweetalert2";
 import { v4 as uuidv4 } from "uuid";
+/* components */
 import AddGroceryItem from "./components/AddGroceryItem";
 import Header from "./components/Header";
 import Items from "./components/Items";
@@ -14,7 +17,7 @@ function App(): JSX.Element {
   const [showItem, setShowItem] = useState(false);
 
   /* https://stackoverflow.com/a/46915314/11986604 */
-  const getGrocery = JSON.parse(localStorage.getItem("itemAdded")!);
+  const getGrocery = JSON.parse(localStorage.getItem("itemAdded")!) as object;
 
   /**
    * Read
@@ -23,7 +26,7 @@ function App(): JSX.Element {
     if (getGrocery === null) {
       setItems([]);
     } else {
-      setItems(getGrocery);
+      setItems(getGrocery as SetStateAction<any[]>);
     }
     // eslint-disable-next-line
   }, []);
@@ -32,9 +35,9 @@ function App(): JSX.Element {
    * Create
    * @param {*} item
    */
-  function createItem(item: any): void {
+  function createItem(item: object): void {
     const id = uuidv4();
-    const newItem = { id, ...item };
+    const newItem = { id, ...item } as object;
 
     setItems([...items, newItem]);
 
@@ -51,10 +54,10 @@ function App(): JSX.Element {
    * Delete
    * @param {*} id
    */
-  function deleteItem(id: any): void {
-    const deleteItem = items.filter((item) => item.id !== id);
+  function deleteItem(id: string): void {
+    const deleteItem = items.filter((item) => item.id !== id) as object;
 
-    setItems(deleteItem);
+    setItems(deleteItem as SetStateAction<any[]>);
 
     Swal.fire({
       icon: "success",
@@ -69,12 +72,12 @@ function App(): JSX.Element {
    * Update
    * @param {*} id
    */
-  function updateTask(id: any): void {
+  function updateTask(id: string): void {
     const text = prompt("Item Name");
     const quantity = prompt("Quantity");
-    const data = JSON.parse(localStorage.getItem("itemAdded")!);
+    const data = JSON.parse(localStorage.getItem("itemAdded")!) as object | any;
 
-    const myData = data.map((x: { id: any }) => {
+    const myData = data.map((x: { id: string }) => {
       if (x.id === id) {
         return {
           ...x,
@@ -84,7 +87,7 @@ function App(): JSX.Element {
         };
       }
       return x;
-    });
+    }) as object;
 
     Swal.fire({
       icon: "success",
@@ -93,7 +96,9 @@ function App(): JSX.Element {
     });
 
     localStorage.setItem("itemAdded", JSON.stringify(myData));
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   return (
