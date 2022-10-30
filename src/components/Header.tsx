@@ -1,9 +1,9 @@
 import Button from "./Button";
 
 /**
- * 
- * @param param0 
- * @returns 
+ *
+ * @param param0
+ * @returns
  */
 function Header({ showForm, changeTextAndColor }: any): JSX.Element {
   return (
