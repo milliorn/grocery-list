@@ -8,10 +8,10 @@ import GroceryItem from "./GroceryItem";
 function Items({ items, onDelete, onEdit }: any): JSX.Element {
   return (
     <>
-      {items.map((item: { id: any }) => (
+      {items.map((item: { id: any }): JSX.Element => (
         <GroceryItem
-          key={item.id}
           item={item}
+          key={item.id}
           onDelete={onDelete}
           onEdit={onEdit}
         />

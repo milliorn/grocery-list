@@ -1,7 +1,12 @@
 import { FaTimes } from "react-icons/fa";
-
+/**
+ *
+ * @param param0
+ * @returns
+ */
 export function DeleteItem({
-  onDelete, item,
+  onDelete,
+  item,
 }: {
   onDelete: Function;
   item: any;

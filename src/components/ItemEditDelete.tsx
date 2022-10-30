@@ -6,12 +6,12 @@ import { EditItem } from "./EditItem";
  * @returns
  */
 export function ItemEditDelete({
-  onDelete,
   item,
+  onDelete,
   onEdit,
 }: {
-  onDelete: Function;
   item: object;
+  onDelete: Function;
   onEdit: Function;
 }): JSX.Element {
   return (
