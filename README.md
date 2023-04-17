@@ -1,6 +1,5 @@
 # Grocery-List
 
-[![CodeQL](https://github.com/milliorn/Grocery-List/actions/workflows/codeql.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/codeql.yml)
 [![Dependency Review](https://github.com/milliorn/Grocery-List/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/dependency-review.yml)
 [![Lint Code Base](https://github.com/milliorn/Grocery-List/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/super-linter.yml)
 [![OSSAR](https://github.com/milliorn/Grocery-List/actions/workflows/ossar.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/ossar.yml)
