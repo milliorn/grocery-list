@@ -1,10 +1,53 @@
-# Grocery-List
+# Grocery List CRUD App
 
 [![Dependency Review](https://github.com/milliorn/Grocery-List/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/dependency-review.yml)
 [![Lint Code Base](https://github.com/milliorn/Grocery-List/actions/workflows/super-linter.yml/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/super-linter.yml)
 [![pages-build-deployment](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment)
 [![DeepSource](https://deepsource.io/gh/milliorn/Grocery-List.svg/?label=active+issues&show_trend=true&token=L2I44ke3pYUYFgF91nnXCPg6)](https://deepsource.io/gh/milliorn/Grocery-List/?ref=repository-badge)
 [![DeepSource](https://deepsource.io/gh/milliorn/Grocery-List.svg/?label=resolved+issues&show_trend=true&token=L2I44ke3pYUYFgF91nnXCPg6)](https://deepsource.io/gh/milliorn/Grocery-List/?ref=repository-badge)
+
+Grocery List is a web application built using React that helps users manage their grocery shopping. It provides a simple, intuitive interface for creating, editing, and deleting grocery items. Users can add items to their shopping list and remove them when they are no longer needed.
+
+## Features
+
+- Create a grocery list by adding items
+- Add Quantity
+- Remove items from the list
+- Update items
+- User-friendly and responsive design
+- Store list locally in browser
+
+## Technologies Used
+
+- React: A JavaScript library for building user interfaces
+- LocalStorage: Browser API for storing grocery list data locally
+- React Icons: A library of popular icons for React
+- Material-UI: A popular React UI framework for creating beautiful user interfaces
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js: Make sure you have Node.js installed on your machine.
+
+### Installation
+
+1. Clone the repository: git clone https://github.com/milliorn/Grocery-List.git
+2. Navigate to the project directory: cd Grocery-List
+3. Install the dependencies: npm install
+4. Start the development server: npm start
+5. Open your browser and visit `http://localhost:3000` to access the application.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- This project was inspired by the need for a simple and efficient grocery list management tool.
+- Special thanks to the contributors who helped improve and enhance the application.
+
+## Links
 
 react-icons -> https://github.com/react-icons/react-icons
 
