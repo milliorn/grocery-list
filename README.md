@@ -20,7 +20,7 @@ Grocery List is a web application built using React that helps users manage thei
 - React: A JavaScript library for building user interfaces
 - LocalStorage: Browser API for storing grocery list data locally
 - React Icons: A library of popular icons for React
-- Material-UI: A popular React UI framework for creating beautiful user interfaces
+- Tailwind-UI: A popular React UI framework for creating beautiful user interfaces
 
 ## Getting Started
 
