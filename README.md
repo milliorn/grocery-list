@@ -1,6 +1,7 @@
 # Grocery List CRUD App
 
 [![pages-build-deployment](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment)
+[![CodeQL](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql)
 
 Grocery List is a web application built using React that helps users manage their grocery shopping. It provides a simple, intuitive interface for creating, editing, and deleting grocery items. Users can add items to their shopping list and remove them when they are no longer needed.
 
