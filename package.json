@@ -2,7 +2,7 @@
   "name": "grocery-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://milliorn.github.io/Grocery-List",
+  "homepage": "https://milliorn.github.io/grocery-list",
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
