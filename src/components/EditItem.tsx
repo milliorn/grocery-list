@@ -1,9 +1,9 @@
 import { FaPencilAlt } from "react-icons/fa";
 
 /**
- * 
- * @param param0 
- * @returns 
+ *
+ * @param param0
+ * @returns
  */
 export function EditItem({
   onEdit,
