@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://milliorn.github.io/grocery-list",
   "dependencies": {
-    "react": "18.2.0",
+    "react": "18.3.1",
     "react-dom": "18.2.0",
     "react-icons": "5.0.1",
     "react-scripts": "5.0.1",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.2",
-    "@types/react": "^18.2.73",
+    "@types/react": "^18.3.1",
     "@types/react-dom": "^18.2.23",
     "@types/uuid": "^9.0.8",
     "autoprefixer": "10.4.19",
