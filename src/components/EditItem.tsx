@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 
 /**

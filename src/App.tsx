@@ -1,5 +1,5 @@
 /* react */
-import { SetStateAction, useEffect, useState } from "react";
+import { JSX, SetStateAction, useEffect, useState } from "react";
 /* npm */
 import Swal from "sweetalert2";
 import { v4 as uuidv4 } from "uuid";
