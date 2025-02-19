@@ -46,12 +46,18 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Links
 
-react-icons -> https://github.com/react-icons/react-icons
+[react-icons](https://github.com/react-icons/react-icons)
 
-sweetalert2 -> https://github.com/sweetalert2/sweetalert2
+[sweetalert2](https://github.com/sweetalert2/sweetalert2)
 
-uuid -> https://github.com/uuidjs/uuid
+[uuid](https://github.com/uuidjs/uuid)
 
-tailwindcss -> https://tailwindcss.com/docs/guides/create-react-app
+[tailwindcss](https://tailwindcss.com/docs/guides/create-react-app)
 
-typescriptlang -> https://www.typescriptlang.org/
+[typescriptlang](https://www.typescriptlang.org)
+
+[Picsum](https://picsum.photos/)
+
+## Lighthouse
+
+![Cloud Landing Page](public/lighthouse.png)

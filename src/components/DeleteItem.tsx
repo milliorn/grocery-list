@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { FaTimes } from "react-icons/fa";
 /**
  *
