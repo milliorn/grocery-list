@@ -9,8 +9,9 @@
 }
 
 body {
-  background-image: url("https://picsum.photos/0/0/?blur=10.webp");
+  background-image: url("https://picsum.photos/200/300/?blur=1.webp");
   background-attachment: fixed;
+  background-color: oklch(0.141 0.005 285.823);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
