@@ -1,54 +1,63 @@
-# React + TypeScript + Vite
+# Grocery List CRUD App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![pages-build-deployment](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment)
+[![CodeQL](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql)
 
-Currently, two official plugins are available:
+Grocery List is a web application built using React that helps users manage their grocery shopping. It provides a simple, intuitive interface for creating, editing, and deleting grocery items. Users can add items to their shopping list and remove them when they are no longer needed.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Create a grocery list by adding items
+- Add Quantity
+- Remove items from the list
+- Update items
+- User-friendly and responsive design
+- Store list locally in browser
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies Used
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- React: A JavaScript library for building user interfaces
+- LocalStorage: Browser API for storing grocery list data locally
+- React Icons: A library of popular icons for React
+- Tailwind-UI: A popular React UI framework for creating beautiful user interfaces
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Node.js: Make sure you have Node.js installed on your machine.
+
+### Installation
+
+1. Clone the repository: git clone <https://github.com/milliorn/Grocery-List.git>
+2. Navigate to the project directory: cd Grocery-List
+3. Install the dependencies: npm install
+4. Start the development server: npm start
+5. Open your browser and visit `http://localhost:3000` to access the application.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- This project was inspired by the need for a simple and efficient grocery list management tool.
+- Special thanks to the contributors who helped improve and enhance the application.
+
+## Links
+
+[react-icons](https://github.com/react-icons/react-icons)
+
+[sweetalert2](https://github.com/sweetalert2/sweetalert2)
+
+[uuid](https://github.com/uuidjs/uuid)
+
+[tailwindcss](https://tailwindcss.com/docs/guides/create-react-app)
+
+[typescriptlang](https://www.typescriptlang.org)
+
+[Picsum](https://picsum.photos/)
+
+## Lighthouse
+
+![Cloud Landing Page](public/lighthouse.png)
