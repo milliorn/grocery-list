@@ -1,10 +1,6 @@
-@import "tailwindcss";
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background-image: url("https://picsum.photos/2560/1440.webp");
@@ -13,7 +9,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 600px;
+  min-height: 100vh;
 }
 
 .container {
