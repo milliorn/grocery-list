@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-image: url("https://picsum.photos/2560/1440.webp");
+  background-image: url("https://picsum.photos/3840/2160.webp");
   background-attachment: fixed;
   background-color: oklch(0.141 0.005 285.823);
   background-position: center;
@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-  min-height: 300px;
+  min-height: 5rem; /* 96px */
 }
 
 .item::-webkit-scrollbar {
