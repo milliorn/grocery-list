@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import AddGroceryItem from "./components/AddGroceryItem";
 import Header from "./components/Header";
 import Items from "./components/Items";
+/* props */
 import { GroceryItemsProps } from "./props/GroceryItemsProps";
 
 /**
@@ -82,17 +83,13 @@ function App(): JSX.Element {
     const text = prompt("Item Name") || "";
     const quantity = prompt("Quantity") || "";
 
-    const data = JSON.parse(
-      localStorage.getItem("itemAdded")!
-    ) as GroceryItemsProps[];
-
-    const myData = data.map((item) => {
+    // Update state using the current items
+    const updatedItems = items.map((item) => {
       if (item.id === id) {
         return {
           ...item,
           text,
           quantity,
-          id: uuidv4(),
         };
       }
       return item;
@@ -104,10 +101,8 @@ function App(): JSX.Element {
       text: "Item updated!",
     });
 
-    localStorage.setItem("itemAdded", JSON.stringify(myData));
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems));
+    setItems(updatedItems); // Update the state to reflect changes without a reload.
   }
 
   return (
