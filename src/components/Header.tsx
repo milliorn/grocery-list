@@ -1,12 +1,13 @@
 import { JSX } from "react";
 import Button from "./Button";
+import { HeaderProps } from "../props/HeaderProps";
 
 /**
  *
  * @param param0
  * @returns
  */
-function Header({ showForm, changeTextAndColor }: any): JSX.Element {
+function Header({ showForm, changeTextAndColor }: HeaderProps): JSX.Element {
   return (
     <header className="flex items-center justify-between mb-4 header">
       <h2 className="font-serif text-xl app-header sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">

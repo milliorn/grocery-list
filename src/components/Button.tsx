@@ -1,10 +1,11 @@
 import { JSX } from "react";
+import { ButtonProps } from "../props/ButtonProps";
 
 /**
  * @param
  * @returns
  */
-function Button({ color, text, onClick }: any): JSX.Element {
+function Button({ color, text, onClick }: ButtonProps): JSX.Element {
   return (
     <button
       type="button"

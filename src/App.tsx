@@ -7,23 +7,21 @@ import { v4 as uuidv4 } from "uuid";
 import AddGroceryItem from "./components/AddGroceryItem";
 import Header from "./components/Header";
 import Items from "./components/Items";
-
-type GroceryItem = { id: string; text: string; quantity: string };
+import { GroceryItemsProps } from "./props/GroceryItemsProps";
 
 /**
  *
  * @returns JSX.Element
  */
 function App(): JSX.Element {
-  const [items, setItems] = useState<GroceryItem[]>([]);
+  const [items, setItems] = useState<GroceryItemsProps[]>([]);
   const [showItem, setShowItem] = useState(false);
 
-  /* https://stackoverflow.com/a/46915314/11986604 */
   const storedGrocery = localStorage.getItem("itemAdded");
 
   // Parse stored items, or fall back to null if none are found
   const savedItems = storedGrocery
-    ? (JSON.parse(storedGrocery) as GroceryItem[])
+    ? (JSON.parse(storedGrocery) as GroceryItemsProps[])
     : null;
 
   /**
@@ -41,8 +39,13 @@ function App(): JSX.Element {
    * Create
    * @param {*} item
    */
-  function createItem(item: Omit<GroceryItem, "id">): void {
-    const newItem: GroceryItem = { id: uuidv4(), ...item };
+  function createItem(item: Omit<GroceryItemsProps, "id">): void {
+    const newItem: GroceryItemsProps = {
+      id: uuidv4(),
+      ...item,
+      text: "",
+      quantity: "",
+    };
 
     setItems([...items, newItem]);
 
@@ -60,9 +63,9 @@ function App(): JSX.Element {
    * @param {*} id
    */
   function deleteItem(id: string): void {
-    const deleteItem = items.filter((item) => item.id !== id);
+    const updatedItems = items.filter((item) => item.id !== id);
 
-    setItems(deleteItem);
+    setItems(updatedItems);
 
     Swal.fire({
       icon: "success",
@@ -70,7 +73,7 @@ function App(): JSX.Element {
       text: "Item deleted!",
     });
 
-    localStorage.setItem("itemAdded", JSON.stringify(deleteItem));
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems));
   }
 
   /**
@@ -83,7 +86,7 @@ function App(): JSX.Element {
 
     const data = JSON.parse(
       localStorage.getItem("itemAdded")!
-    ) as GroceryItem[];
+    ) as GroceryItemsProps[];
 
     const myData = data.map((item) => {
       if (item.id === id) {
