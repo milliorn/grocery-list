@@ -1,5 +1,5 @@
 /* react */
-import { JSX, SetStateAction, useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 /* npm */
 import Swal from "sweetalert2";
 import { v4 as uuidv4 } from "uuid";
@@ -7,37 +7,44 @@ import { v4 as uuidv4 } from "uuid";
 import AddGroceryItem from "./components/AddGroceryItem";
 import Header from "./components/Header";
 import Items from "./components/Items";
+/* props */
+import { GroceryItemsProps } from "./props/GroceryItemsProps";
 
 /**
  *
  * @returns JSX.Element
  */
 function App(): JSX.Element {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<GroceryItemsProps[]>([]);
   const [showItem, setShowItem] = useState(false);
 
-  /* https://stackoverflow.com/a/46915314/11986604 */
-  const getGrocery = JSON.parse(localStorage.getItem("itemAdded")!) as object;
+  const storedGrocery = localStorage.getItem("itemAdded");
+
+  // Parse stored items, or fall back to null if none are found
+  const savedItems = storedGrocery
+    ? (JSON.parse(storedGrocery) as GroceryItemsProps[])
+    : null;
 
   /**
    * Read
    */
   useEffect(() => {
-    if (getGrocery === null) {
+    if (savedItems === null) {
       setItems([]);
     } else {
-      setItems(getGrocery as SetStateAction<any[]>);
+      setItems(savedItems);
     }
-    // eslint-disable-next-line
-  }, []);
+  }, [savedItems]);
 
   /**
    * Create
    * @param {*} item
    */
-  function createItem(item: object): void {
-    const id = uuidv4();
-    const newItem = { id, ...item } as object;
+  function createItem(item: Omit<GroceryItemsProps, "id">): void {
+    const newItem: GroceryItemsProps = {
+      id: uuidv4(),
+      ...item, // This will now include text and quantity from item
+    };
 
     setItems([...items, newItem]);
 
@@ -55,9 +62,9 @@ function App(): JSX.Element {
    * @param {*} id
    */
   function deleteItem(id: string): void {
-    const deleteItem = items.filter((item) => item.id !== id) as object;
+    const updatedItems = items.filter((item) => item.id !== id);
 
-    setItems(deleteItem as SetStateAction<any[]>);
+    setItems(updatedItems);
 
     Swal.fire({
       icon: "success",
@@ -65,7 +72,7 @@ function App(): JSX.Element {
       text: "Item deleted!",
     });
 
-    localStorage.setItem("itemAdded", JSON.stringify(deleteItem));
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems));
   }
 
   /**
@@ -73,21 +80,20 @@ function App(): JSX.Element {
    * @param {*} id
    */
   function updateTask(id: string): void {
-    const text = prompt("Item Name");
-    const quantity = prompt("Quantity");
-    const data = JSON.parse(localStorage.getItem("itemAdded")!) as object | any;
+    const text = prompt("Item Name") || "";
+    const quantity = prompt("Quantity") || "";
 
-    const myData = data.map((x: { id: string }) => {
-      if (x.id === id) {
+    // Update state using the current items
+    const updatedItems = items.map((item) => {
+      if (item.id === id) {
         return {
-          ...x,
-          text: text,
-          quantity: quantity,
-          id: uuidv4(),
+          ...item,
+          text,
+          quantity,
         };
       }
-      return x;
-    }) as object;
+      return item;
+    });
 
     Swal.fire({
       icon: "success",
@@ -95,10 +101,8 @@ function App(): JSX.Element {
       text: "Item updated!",
     });
 
-    localStorage.setItem("itemAdded", JSON.stringify(myData));
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems));
+    setItems(updatedItems); // Update the state to reflect changes without a reload.
   }
 
   return (

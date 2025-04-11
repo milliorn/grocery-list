@@ -29,7 +29,7 @@ Grocery List is a web application built using React that helps users manage thei
 
 ### Installation
 
-1. Clone the repository: git clone https://github.com/milliorn/Grocery-List.git
+1. Clone the repository: git clone <https://github.com/milliorn/Grocery-List.git>
 2. Navigate to the project directory: cd Grocery-List
 3. Install the dependencies: npm install
 4. Start the development server: npm start
