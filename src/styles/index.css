@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-image: url("https://picsum.photos/3840/2160.webp");
+  background-image: url("https://picsum.photos/1920/1080.webp");
   background-color: oklch(0.141 0.005 285.823);
 }
 
