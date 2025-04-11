@@ -42,9 +42,7 @@ function App(): JSX.Element {
   function createItem(item: Omit<GroceryItemsProps, "id">): void {
     const newItem: GroceryItemsProps = {
       id: uuidv4(),
-      ...item,
-      text: "",
-      quantity: "",
+      ...item, // This will now include text and quantity from item
     };
 
     setItems([...items, newItem]);
