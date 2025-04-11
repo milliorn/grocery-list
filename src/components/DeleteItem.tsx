@@ -1,6 +1,6 @@
-import { JSX } from "react";
-import { FaTimes } from "react-icons/fa";
-import { DeleteItemProps } from "../props/DeleteItemProps";
+import { JSX } from "react"
+import { FaTimes } from "react-icons/fa"
+import { DeleteItemProps } from "../props/DeleteItemProps"
 
 /**
  * DeleteItem component that renders a clickable icon to delete an item.
@@ -14,5 +14,5 @@ export function DeleteItem({ onDelete, item }: DeleteItemProps): JSX.Element {
         <FaTimes onClick={() => onDelete(item.id)} />
       </div>
     </div>
-  );
+  )
 }

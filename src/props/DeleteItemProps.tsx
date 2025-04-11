@@ -1,4 +1,4 @@
 export type DeleteItemProps = {
-  onDelete: (id: string) => void;
-  item: { id: string };
-};
+  onDelete: (id: string) => void
+  item: { id: string }
+}

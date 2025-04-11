@@ -1,5 +1,5 @@
 export type ButtonProps = {
-  color: string;
-  text: string;
-  onClick: () => void;
-};
+  color: string
+  text: string
+  onClick: () => void
+}

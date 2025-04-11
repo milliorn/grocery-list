@@ -1,40 +1,40 @@
 /* react */
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react"
 /* npm */
-import Swal from "sweetalert2";
-import { v4 as uuidv4 } from "uuid";
+import Swal from "sweetalert2"
+import { v4 as uuidv4 } from "uuid"
 /* components */
-import AddGroceryItem from "./components/AddGroceryItem";
-import Header from "./components/Header";
-import Items from "./components/Items";
+import AddGroceryItem from "./components/AddGroceryItem"
+import Header from "./components/Header"
+import Items from "./components/Items"
 /* props */
-import { GroceryItemsProps } from "./props/GroceryItemsProps";
+import { GroceryItemsProps } from "./props/GroceryItemsProps"
 
 /**
  *
  * @returns JSX.Element
  */
 function App(): JSX.Element {
-  const [items, setItems] = useState<GroceryItemsProps[]>([]);
-  const [showItem, setShowItem] = useState(false);
+  const [items, setItems] = useState<GroceryItemsProps[]>([])
+  const [showItem, setShowItem] = useState(false)
 
-  const storedGrocery = localStorage.getItem("itemAdded");
+  const storedGrocery = localStorage.getItem("itemAdded")
 
   // Parse stored items, or fall back to null if none are found
   const savedItems = storedGrocery
     ? (JSON.parse(storedGrocery) as GroceryItemsProps[])
-    : null;
+    : null
 
   /**
    * Read
    */
   useEffect(() => {
     if (savedItems === null) {
-      setItems([]);
+      setItems([])
     } else {
-      setItems(savedItems);
+      setItems(savedItems)
     }
-  }, [savedItems]);
+  }, [savedItems])
 
   /**
    * Create
@@ -43,18 +43,18 @@ function App(): JSX.Element {
   function createItem(item: Omit<GroceryItemsProps, "id">): void {
     const newItem: GroceryItemsProps = {
       id: uuidv4(),
-      ...item, // This will now include text and quantity from item
-    };
+      ...item // This will now include text and quantity from item
+    }
 
-    setItems([...items, newItem]);
+    setItems([...items, newItem])
 
     Swal.fire({
       icon: "success",
       title: "Success!",
-      text: "Item added!",
-    });
+      text: "Item added!"
+    })
 
-    localStorage.setItem("itemAdded", JSON.stringify([...items, newItem]));
+    localStorage.setItem("itemAdded", JSON.stringify([...items, newItem]))
   }
 
   /**
@@ -62,17 +62,17 @@ function App(): JSX.Element {
    * @param {*} id
    */
   function deleteItem(id: string): void {
-    const updatedItems = items.filter((item) => item.id !== id);
+    const updatedItems = items.filter((item) => item.id !== id)
 
-    setItems(updatedItems);
+    setItems(updatedItems)
 
     Swal.fire({
       icon: "success",
       title: "Success!",
-      text: "Item deleted!",
-    });
+      text: "Item deleted!"
+    })
 
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems));
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
   }
 
   /**
@@ -80,8 +80,8 @@ function App(): JSX.Element {
    * @param {*} id
    */
   function updateTask(id: string): void {
-    const text = prompt("Item Name") || "";
-    const quantity = prompt("Quantity") || "";
+    const text = prompt("Item Name") || ""
+    const quantity = prompt("Quantity") || ""
 
     // Update state using the current items
     const updatedItems = items.map((item) => {
@@ -89,20 +89,20 @@ function App(): JSX.Element {
         return {
           ...item,
           text,
-          quantity,
-        };
+          quantity
+        }
       }
-      return item;
-    });
+      return item
+    })
 
     Swal.fire({
       icon: "success",
       title: "Success!",
-      text: "Item updated!",
-    });
+      text: "Item updated!"
+    })
 
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems));
-    setItems(updatedItems); // Update the state to reflect changes without a reload.
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
+    setItems(updatedItems) // Update the state to reflect changes without a reload.
   }
 
   return (
@@ -124,7 +124,7 @@ function App(): JSX.Element {
         <span className="text-xl leading-10 ">No items left!</span>
       )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
