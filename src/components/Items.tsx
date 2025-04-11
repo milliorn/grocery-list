@@ -10,16 +10,14 @@ import { ItemsProps } from "../props/ItemsProps";
 function Items({ items, onDelete, onEdit }: ItemsProps): JSX.Element {
   return (
     <>
-      {items.map(
-        (item: { id: string }): JSX.Element => (
-          <GroceryItem
-            item={item}
-            key={item.id}
-            onDelete={onDelete}
-            onEdit={onEdit}
-          />
-        )
-      )}
+      {items.map((item) => (
+        <GroceryItem
+          item={item}
+          key={item.id}
+          onDelete={onDelete}
+          onEdit={onEdit}
+        />
+      ))}
     </>
   );
 }
