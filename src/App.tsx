@@ -1,4 +1,3 @@
-/* react */
 import { JSX, useEffect, useState } from "react"
 /* npm */
 import Swal from "sweetalert2"
@@ -18,27 +17,17 @@ function App(): JSX.Element {
   const [items, setItems] = useState<GroceryItemsProps[]>([])
   const [showItem, setShowItem] = useState(false)
 
-  const storedGrocery = localStorage.getItem("itemAdded")
-
-  // Parse stored items, or fall back to null if none are found
-  const savedItems = storedGrocery
-    ? (JSON.parse(storedGrocery) as GroceryItemsProps[])
-    : null
-
-  /**
-   * Read
-   */
+  // Read from local storage once when the component mounts
   useEffect(() => {
-    if (savedItems === null) {
-      setItems([])
-    } else {
-      setItems(savedItems)
+    const storedGrocery = localStorage.getItem("itemAdded")
+    if (storedGrocery) {
+      setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
     }
-  }, [savedItems])
+  }, [])
 
   /**
    * Create
-   * @param {*} item
+   * @param item - an object containing item properties except id.
    */
   function createItem(item: Omit<GroceryItemsProps, "id">): void {
     const newItem: GroceryItemsProps = {
@@ -46,7 +35,8 @@ function App(): JSX.Element {
       ...item // This will now include text and quantity from item
     }
 
-    setItems([...items, newItem])
+    const updatedItems = [...items, newItem]
+    setItems(updatedItems)
 
     Swal.fire({
       icon: "success",
@@ -54,16 +44,14 @@ function App(): JSX.Element {
       text: "Item added!"
     })
 
-    localStorage.setItem("itemAdded", JSON.stringify([...items, newItem]))
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
   }
 
   /**
-   * Delete
-   * @param {*} id
+   * Delete an item by id
    */
   function deleteItem(id: string): void {
     const updatedItems = items.filter((item) => item.id !== id)
-
     setItems(updatedItems)
 
     Swal.fire({
@@ -76,8 +64,7 @@ function App(): JSX.Element {
   }
 
   /**
-   * Update
-   * @param {*} id
+   * Update an item by id
    */
   function updateTask(id: string): void {
     const text = prompt("Item Name") || ""
@@ -102,7 +89,7 @@ function App(): JSX.Element {
     })
 
     localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
-    setItems(updatedItems) // Update the state to reflect changes without a reload.
+    setItems(updatedItems) // Update state without reloading.
   }
 
   return (
@@ -121,7 +108,7 @@ function App(): JSX.Element {
       {items.length > 0 ? (
         <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
       ) : (
-        <span className="text-xl leading-10 ">No items left!</span>
+        <span className="text-xl leading-10">No items left!</span>
       )}
     </div>
   )
