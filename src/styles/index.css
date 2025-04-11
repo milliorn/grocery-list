@@ -4,12 +4,7 @@
 
 body {
   background-image: url("https://picsum.photos/3840/2160.webp");
-  background-attachment: fixed;
   background-color: oklch(0.141 0.005 285.823);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
 }
 
 .container {
