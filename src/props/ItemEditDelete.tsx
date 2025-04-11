@@ -1,7 +1,7 @@
-import { JSX } from "react";
-import { DeleteItem } from "../components/DeleteItem";
-import { EditItem } from "../components/EditItem";
-import { ItemEditDeleteProps } from "./ItemEditDeleteProps";
+import { JSX } from "react"
+import { DeleteItem } from "../components/DeleteItem"
+import { EditItem } from "../components/EditItem"
+import { ItemEditDeleteProps } from "./ItemEditDeleteProps"
 
 /**
  * Renders the delete and edit controls for an item.
@@ -11,12 +11,12 @@ import { ItemEditDeleteProps } from "./ItemEditDeleteProps";
 export function ItemEditDelete({
   item,
   onDelete,
-  onEdit,
+  onEdit
 }: ItemEditDeleteProps): JSX.Element {
   return (
     <div>
       <DeleteItem onDelete={onDelete} item={item} />
       <EditItem onEdit={onEdit} item={item} />
     </div>
-  );
+  )
 }

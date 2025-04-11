@@ -1,6 +1,6 @@
-import { JSX } from "react";
-import { FaPencilAlt } from "react-icons/fa";
-import { EditItemProps } from "../props/EditItemProps";
+import { JSX } from "react"
+import { FaPencilAlt } from "react-icons/fa"
+import { EditItemProps } from "../props/EditItemProps"
 
 /**
  * EditItem component that renders a clickable icon to edit an item.
@@ -14,5 +14,5 @@ export function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
         <FaPencilAlt onClick={() => onEdit(item.id)} />
       </div>
     </div>
-  );
+  )
 }

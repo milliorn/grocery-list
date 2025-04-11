@@ -1,6 +1,6 @@
-import { JSX } from "react";
-import GroceryItem from "./GroceryItem";
-import { ItemsProps } from "../props/ItemsProps";
+import { JSX } from "react"
+import GroceryItem from "./GroceryItem"
+import { ItemsProps } from "../props/ItemsProps"
 
 /**
  *
@@ -19,7 +19,7 @@ function Items({ items, onDelete, onEdit }: ItemsProps): JSX.Element {
         />
       ))}
     </>
-  );
+  )
 }
 
-export default Items;
+export default Items

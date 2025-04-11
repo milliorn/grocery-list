@@ -1,5 +1,5 @@
-import { JSX } from "react";
-import { ButtonProps } from "../props/ButtonProps";
+import { JSX } from "react"
+import { ButtonProps } from "../props/ButtonProps"
 
 /**
  * @param
@@ -15,7 +15,7 @@ function Button({ color, text, onClick }: ButtonProps): JSX.Element {
     >
       {text}
     </button>
-  );
+  )
 }
 
-export default Button;
+export default Button

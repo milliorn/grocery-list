@@ -1,40 +1,38 @@
-import { JSX, useState } from "react";
-import Swal from "sweetalert2";
+import { JSX, useState } from "react"
+import Swal from "sweetalert2"
+import { AddGroceryItemProps } from "../props/AddGroceryItemProps"
 
-// Inline type for the onSave prop.
-type Props = { onSave: (item: { text: string; quantity: string }) => void };
-
-function AddGroceryItem({ onSave }: Props): JSX.Element {
-  const [text, setText] = useState("");
-  const [quantity, setQuantity] = useState("");
+function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
+  const [text, setText] = useState("")
+  const [quantity, setQuantity] = useState("")
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!text && !quantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
-        text: "Add item and quantity or close the form.",
-      });
+        text: "Add item and quantity or close the form."
+      })
     } else if (!text && quantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
-        text: "Add your item.",
-      });
+        text: "Add your item."
+      })
     } else if (text && !quantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
-        text: "Add your quantity.",
-      });
+        text: "Add your quantity."
+      })
     } else {
-      onSave({ text, quantity });
+      onSave({ text, quantity })
     }
 
-    setText("");
-    setQuantity("");
+    setText("")
+    setQuantity("")
   }
 
   return (
@@ -68,7 +66,7 @@ function AddGroceryItem({ onSave }: Props): JSX.Element {
         value="Add Item"
       />
     </form>
-  );
+  )
 }
 
-export default AddGroceryItem;
+export default AddGroceryItem

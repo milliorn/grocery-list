@@ -1,14 +1,14 @@
-import { JSX } from "react";
-import { GroceryItemsProps } from "../props/GroceryItemsProps";
+import { JSX } from "react"
+import { GroceryItemsProps } from "../props/GroceryItemsProps"
 
 /**
  * @param param0
  * @returns
  */
 export function ItemsQuantity({
-  item,
+  item
 }: {
-  item: GroceryItemsProps;
+  item: GroceryItemsProps
 }): JSX.Element {
   return (
     <div className="text-zinc-900">
@@ -21,5 +21,5 @@ export function ItemsQuantity({
         {item.quantity}
       </p>
     </div>
-  );
+  )
 }

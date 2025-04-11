@@ -1,6 +1,6 @@
-import { JSX } from "react";
-import Button from "./Button";
-import { HeaderProps } from "../props/HeaderProps";
+import { JSX } from "react"
+import Button from "./Button"
+import { HeaderProps } from "../props/HeaderProps"
 
 /**
  *
@@ -19,7 +19,7 @@ function Header({ showForm, changeTextAndColor }: HeaderProps): JSX.Element {
         text={changeTextAndColor ? "Close" : "Add"}
       />
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

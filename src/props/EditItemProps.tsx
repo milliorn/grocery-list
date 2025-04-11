@@ -1,4 +1,4 @@
 export type EditItemProps = {
-  onEdit: (id: string) => void;
-  item: { id: string };
-};
+  onEdit: (id: string) => void
+  item: { id: string }
+}

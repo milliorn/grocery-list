@@ -1,4 +1,4 @@
 export type HeaderProps = {
-  showForm: () => void;
-  changeTextAndColor: boolean;
-};
+  showForm: () => void
+  changeTextAndColor: boolean
+}
