@@ -18,5 +18,6 @@ export default defineConfig({
   // CSS configuration: specify a custom PostCSS configuration file.
   css: {
     postcss: "./postcss.config.cjs"
-  }
+  },
+  base: "/grocery-list/"
 })
