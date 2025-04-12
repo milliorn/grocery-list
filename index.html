@@ -1,18 +1,33 @@
 <!doctype html>
+<!--
+  The doctype declaration informs the browser to render the page in standards mode.
+-->
 <html lang="en">
   <head>
+    <!-- Favicon: The icon displayed in the browser tab. -->
     <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+
+    <!-- Character Encoding: Specifies the character encoding for the HTML document. -->
     <meta charset="UTF-8" />
+
+    <!-- Meta Description: Provides a brief description of the page for search engines and social sharing. -->
     <meta
       name="description"
       content="A simple, interactive grocery list app built with React and Tailwind CSS. Add, remove, and track your shopping items with ease."
     />
+
+    <!-- Viewport Meta Tag: Ensures the layout is responsive on all devices. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Document Title: The title of the document displayed on the browser tab. -->
     <title>Grocery List</title>
   </head>
 
   <body class="bg-fixed bg-center bg-no-repeat bg-cover min-h-screen">
+    <!-- Root Element: This is where your React application will mount and render. -->
     <div id="root"></div>
+
+    <!-- Main Script: Loads the entry point of your React application as a module. -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
