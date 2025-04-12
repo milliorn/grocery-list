@@ -10,6 +10,7 @@ import Items from "./components/Items"
 import { GroceryItemsProps } from "./props/GroceryItemsProps"
 
 /**
+ * Main application component.
  *
  * @returns JSX.Element
  */
@@ -20,13 +21,15 @@ function App(): JSX.Element {
   // Read from local storage once when the component mounts
   useEffect(() => {
     const storedGrocery = localStorage.getItem("itemAdded")
-    if (storedGrocery) {
+    // Instead of using a simple truthy check, explicitly ensure that storedGrocery is neither null nor empty
+    if (storedGrocery !== null && storedGrocery !== "") {
       setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
     }
   }, [])
 
   /**
-   * Create
+   * Create a new grocery item.
+   *
    * @param item - an object containing item properties except id.
    */
   function createItem(item: Omit<GroceryItemsProps, "id">): void {
@@ -48,7 +51,9 @@ function App(): JSX.Element {
   }
 
   /**
-   * Delete an item by id
+   * Delete an item by id.
+   *
+   * @param id - the id of the item to delete.
    */
   function deleteItem(id: string): void {
     const updatedItems = items.filter((item) => item.id !== id)
@@ -64,11 +69,17 @@ function App(): JSX.Element {
   }
 
   /**
-   * Update an item by id
+   * Update an item by id.
+   *
+   * @param id - the id of the item to update.
    */
   function updateTask(id: string): void {
-    const text = prompt("Item Name") || ""
-    const quantity = prompt("Quantity") || ""
+    // Use the nullish coalescing operator to assign default empty strings if prompt returns null.
+    const text = prompt("Item Name") ?? ""
+    const quantity = prompt("Quantity") ?? ""
+
+    // Optionally, you could check if text or quantity are empty
+    // and handle the case accordingly.
 
     // Update state using the current items
     const updatedItems = items.map((item) => {
