@@ -1,8 +1,8 @@
-import js from "@eslint/js";
-import globals from "globals";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import tseslint from "typescript-eslint";
+import js from "@eslint/js"
+import globals from "globals"
+import reactHooks from "eslint-plugin-react-hooks"
+import reactRefresh from "eslint-plugin-react-refresh"
+import tseslint from "typescript-eslint"
 
 export default tseslint.config(
   {
@@ -12,10 +12,7 @@ export default tseslint.config(
   },
   {
     // Inherit recommended rules from both @eslint/js and TypeScript ESLint.
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended
-    ],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
 
     // Specify the file patterns that the configuration applies to.
     // Here, all TypeScript and TSX files are targeted.
@@ -71,7 +68,10 @@ export default tseslint.config(
       "curly": "error",
 
       // Require explicit return types on functions (with an allowance for simple expressions).
-      "@typescript-eslint/explicit-function-return-type": ["warn", { allowExpressions: true }],
+      "@typescript-eslint/explicit-function-return-type": [
+        "warn",
+        { allowExpressions: true }
+      ],
 
       // Disallow the usage of the 'any' type to enforce stricter type safety.
       "@typescript-eslint/no-explicit-any": "error",
@@ -98,4 +98,4 @@ export default tseslint.config(
       "@typescript-eslint/prefer-optional-chain": "error"
     }
   }
-);
+)

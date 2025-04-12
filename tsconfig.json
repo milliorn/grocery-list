@@ -7,7 +7,7 @@
   // This is useful for projects that are split into separate tsconfig files,
   // such as one for a client-side app and one for Node-specific configurations.
   "references": [
-    { "path": "./tsconfig.app.json" },  // Reference to the application-specific TypeScript config.
-    { "path": "./tsconfig.node.json" }  // Reference to the Node-specific TypeScript config.
+    { "path": "./tsconfig.app.json" }, // Reference to the application-specific TypeScript config.
+    { "path": "./tsconfig.node.json" } // Reference to the Node-specific TypeScript config.
   ]
 }

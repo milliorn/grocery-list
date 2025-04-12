@@ -23,4 +23,4 @@ module.exports = {
     // Adds vendor prefixes to CSS rules for cross-browser compatibility.
     autoprefixer: {}
   }
-};
+}

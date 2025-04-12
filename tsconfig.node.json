@@ -21,15 +21,12 @@
     "noUncheckedSideEffectImports": true, // Ensure that modules with side effects are explicitly checked
 
     /* Additional Strictness Options */
-    "exactOptionalPropertyTypes": true,          // Ensures optional properties are used exactly as declared.
-    "noImplicitOverride": true,                   // Requires an explicit "override" modifier for overriding methods.
-    "noImplicitReturns": true,                    // Ensures all code paths in a function return a value.
-    "forceConsistentCasingInFileNames": true,     // Enforces consistent casing in file names across the project.
-    "useUnknownInCatchVariables": true,           // Use 'unknown' instead of 'any' for catch clause variables.
-    "noPropertyAccessFromIndexSignature": true    // Disallows accessing properties on an index signature without an explicit type assertion.
+    "exactOptionalPropertyTypes": true, // Ensures optional properties are used exactly as declared.
+    "noImplicitOverride": true, // Requires an explicit "override" modifier for overriding methods.
+    "noImplicitReturns": true, // Ensures all code paths in a function return a value.
+    "forceConsistentCasingInFileNames": true, // Enforces consistent casing in file names across the project.
+    "useUnknownInCatchVariables": true, // Use 'unknown' instead of 'any' for catch clause variables.
+    "noPropertyAccessFromIndexSignature": true // Disallows accessing properties on an index signature without an explicit type assertion.
   },
-  "include": [
-    "vite.config.ts",
-    "src/**/*"
-  ]
+  "include": ["vite.config.ts", "src/**/*"]
 }
