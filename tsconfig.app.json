@@ -1,26 +1,62 @@
 {
   "compilerOptions": {
+    // Stores incremental build information to speed up rebuilds.
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    // Compile to ECMAScript 2020 for modern language features.
     "target": "ES2020",
+    // Use the ECMAScript class field semantics.
     "useDefineForClassFields": true,
+    // Include libraries for ES2020 and browser-specific APIs.
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // Use native ES module syntax with the latest features.
     "module": "ESNext",
+    // Skip checking declaration files to reduce compile time.
     "skipLibCheck": true,
 
     /* Bundler mode */
+    // Optimized module resolution for bundlers like Vite.
     "moduleResolution": "bundler",
+    // Allow importing modules with explicit TypeScript extensions.
     "allowImportingTsExtensions": true,
+    // Ensure that each file is independently transpile-able.
     "isolatedModules": true,
+    // Treat all files as modules even if they don't contain imports/exports.
     "moduleDetection": "force",
+    // Do not emit compiled JavaScript; Vite handles bundling and output.
     "noEmit": true,
+    // Enable the new JSX transform for React.
     "jsx": "react-jsx",
 
     /* Linting */
+    // Enable all strict type-checking options.
     "strict": true,
+    // Report errors for variables that are declared but never used.
     "noUnusedLocals": true,
+    // Report errors for unused function parameters.
     "noUnusedParameters": true,
+    // Ensure each switch statement is exhaustive with explicit breaks or returns.
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    // Flag any imports that may have unchecked side effects.
+    "noUncheckedSideEffectImports": true,
+
+    /* Additional Strictness Options */
+    // Enforce exact handling of optional properties.
+    "exactOptionalPropertyTypes": true,
+    // Require explicit 'override' modifiers when overriding methods.
+    "noImplicitOverride": true,
+    // Ensure every code path in a function returns a value.
+    "noImplicitReturns": true,
+    // Enforce consistent casing in file names to prevent OS-specific issues.
+    "forceConsistentCasingInFileNames": true,
+    // Require catch clause variables to be typed as unknown, not any.
+    "useUnknownInCatchVariables": true,
+    // Disallow implicit property access on objects with index signatures.
+    "noPropertyAccessFromIndexSignature": true,
+    // Raise an error when 'this' has an implied 'any' type.
+    "noImplicitThis": true,
+    // Parse all files in strict mode by default.
+    "alwaysStrict": true
   },
+  // Include all source files in the "src" directory for type-checking.
   "include": ["src"]
 }

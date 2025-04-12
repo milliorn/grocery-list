@@ -1,7 +1,13 @@
 {
+  // The "files" array is empty because this composite configuration
+  // delegates type-checking and compilation to the referenced configurations.
   "files": [],
+
+  // "references" tells TypeScript to include and build additional projects.
+  // This is useful for projects that are split into separate tsconfig files,
+  // such as one for a client-side app and one for Node-specific configurations.
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.app.json" },  // Reference to the application-specific TypeScript config.
+    { "path": "./tsconfig.node.json" }  // Reference to the Node-specific TypeScript config.
   ]
 }
