@@ -29,6 +29,7 @@
     "noPropertyAccessFromIndexSignature": true    // Disallows accessing properties on an index signature without an explicit type assertion.
   },
   "include": [
-    "vite.config.ts" // Include the Vite configuration file for type-checking
+    "vite.config.ts",
+    "src/**/*"
   ]
 }

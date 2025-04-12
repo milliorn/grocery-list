@@ -8,7 +8,7 @@ export default tseslint.config(
   {
     // Global ignore patterns: Excludes the "dist" directory from linting,
     // ensuring build output is not checked for errors.
-    ignores: ["dist"]
+    ignores: ["dist", "vite.config.ts"]
   },
   {
     // Inherit recommended rules from both @eslint/js and TypeScript ESLint.
