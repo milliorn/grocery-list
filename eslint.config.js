@@ -56,7 +56,7 @@ export default tseslint.config(
       // Additional strictness rules to enforce higher code quality and type safety:
 
       // Require strict equality operators (=== and !==) over abstract equality (== and !=).
-      "eqeqeq": "error",
+      eqeqeq: "error",
 
       // Disallow usage of 'var' in favor of block-scoped declarations.
       "no-var": "error",
@@ -65,7 +65,7 @@ export default tseslint.config(
       "prefer-const": "error",
 
       // Require curly braces for all control structures.
-      "curly": "error",
+      curly: "error",
 
       // Require explicit return types on functions (with an allowance for simple expressions).
       "@typescript-eslint/explicit-function-return-type": [

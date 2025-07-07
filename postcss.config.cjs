@@ -29,5 +29,5 @@
 // Processes Tailwind CSS directives and generates utility classes.
 // Adds vendor prefixes to CSS rules for cross-browser compatibility.
 module.exports = {
-  plugins: [require('@tailwindcss/postcss'), require('autoprefixer')],
-};
+  plugins: [require("@tailwindcss/postcss"), require("autoprefixer")]
+}

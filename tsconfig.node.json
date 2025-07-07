@@ -1,34 +1,34 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo", // File to store incremental build metadata
-    "target": "ES2022",                                              // Set ECMAScript version for compiled output to ES2022
-    "lib": ["ES2023"],                                               // Include standard library features from ES2023 in type-checking
-    "module": "ESNext",                                              // Use the latest ES module system, compatible with modern bundlers
-    "skipLibCheck": true,                                            // Skip type checking of declaration files for faster compilation
+    "target": "ES2022", // Set ECMAScript version for compiled output to ES2022
+    "lib": ["ES2023"], // Include standard library features from ES2023 in type-checking
+    "module": "ESNext", // Use the latest ES module system, compatible with modern bundlers
+    "skipLibCheck": true, // Skip type checking of declaration files for faster compilation
 
     /* Bundler mode */
-    "moduleResolution": "bundler",                                   // Use a module resolution strategy optimized for bundlers
-    "allowImportingTsExtensions": true,                              // Allow importing of modules with TypeScript file extensions
-    "isolatedModules": true,                                         // Ensure each file is treated as a separate module for isolated transpilation
-    "moduleDetection": "force",                                      // Force every file to be considered a module, even without imports/exports
-    "noEmit": true,                                                  // Do not emit output files; bundler (e.g., Vite) will handle transpilation and bundling
+    "moduleResolution": "bundler", // Use a module resolution strategy optimized for bundlers
+    "allowImportingTsExtensions": true, // Allow importing of modules with TypeScript file extensions
+    "isolatedModules": true, // Ensure each file is treated as a separate module for isolated transpilation
+    "moduleDetection": "force", // Force every file to be considered a module, even without imports/exports
+    "noEmit": true, // Do not emit output files; bundler (e.g., Vite) will handle transpilation and bundling
 
     /* Linting */
-    "strict": true,                                                  // Enable all strict type-checking options
-    "noUnusedLocals": true,                                          // Report errors for declared variables that are never used
-    "noUnusedParameters": true,                                      // Report errors for function parameters that are not used
-    "noFallthroughCasesInSwitch": true,                              // Prevent fall-through between switch-case statements
-    "noUncheckedSideEffectImports": true,                            // Ensure that modules with side effects are explicitly checked
+    "strict": true, // Enable all strict type-checking options
+    "noUnusedLocals": true, // Report errors for declared variables that are never used
+    "noUnusedParameters": true, // Report errors for function parameters that are not used
+    "noFallthroughCasesInSwitch": true, // Prevent fall-through between switch-case statements
+    "noUncheckedSideEffectImports": true, // Ensure that modules with side effects are explicitly checked
 
     /* Additional Strictness Options */
-    "exactOptionalPropertyTypes": true,                              // Ensures optional properties are used exactly as declared
-    "noImplicitOverride": true,                                      // Requires an explicit "override" modifier for overriding methods
-    "noImplicitReturns": true,                                       // Ensures all code paths in a function return a value
-    "forceConsistentCasingInFileNames": true,                        // Enforces consistent casing in file names across the project
-    "useUnknownInCatchVariables": true,                              // Use 'unknown' instead of 'any' for catch clause variables
-    "noPropertyAccessFromIndexSignature": true                       // Disallows accessing properties on an index signature without an explicit type assertion
+    "exactOptionalPropertyTypes": true, // Ensures optional properties are used exactly as declared
+    "noImplicitOverride": true, // Requires an explicit "override" modifier for overriding methods
+    "noImplicitReturns": true, // Ensures all code paths in a function return a value
+    "forceConsistentCasingInFileNames": true, // Enforces consistent casing in file names across the project
+    "useUnknownInCatchVariables": true, // Use 'unknown' instead of 'any' for catch clause variables
+    "noPropertyAccessFromIndexSignature": true // Disallows accessing properties on an index signature without an explicit type assertion
   },
   "include": [
-    "vite.config.ts"  // Only include your Vite configuration (and other Node scripts as needed)
+    "vite.config.ts" // Only include your Vite configuration (and other Node scripts as needed)
   ]
 }
