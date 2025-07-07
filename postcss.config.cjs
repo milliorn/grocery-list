@@ -15,12 +15,19 @@
  * - Tailwind CSS: https://tailwindcss.com/
  * - Autoprefixer: https://github.com/postcss/autoprefixer
  */
-module.exports = {
-  plugins: {
-    // Processes Tailwind CSS directives and generates utility classes.
-    tailwindcss: {},
+// module.exports = {
+//   plugins: {
+//     // Processes Tailwind CSS directives and generates utility classes.
+//     tailwindcss: {},
 
-    // Adds vendor prefixes to CSS rules for cross-browser compatibility.
-    autoprefixer: {}
-  }
-}
+//     // Adds vendor prefixes to CSS rules for cross-browser compatibility.
+//     autoprefixer: {}
+//   }
+// }
+
+// CommonJS version
+// Processes Tailwind CSS directives and generates utility classes.
+// Adds vendor prefixes to CSS rules for cross-browser compatibility.
+module.exports = {
+  plugins: [require('@tailwindcss/postcss'), require('autoprefixer')],
+};

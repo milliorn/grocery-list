@@ -1,9 +1,10 @@
 /* Import Tailwind's base styles (e.g., resets, base typography) */
-@tailwind base;
+/* @tailwind base; */
 /* Import Tailwind's component styles which include pre-designed components */
-@tailwind components;
+/* @tailwind components; */
 /* Import Tailwind's utility classes for rapid styling of elements */
-@tailwind utilities;
+/* @tailwind utilities; */
+@import "tailwindcss";
 
 body {
   /* Set a full-screen background image from a remote source */
