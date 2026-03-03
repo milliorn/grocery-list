@@ -73,34 +73,49 @@ function App(): JSX.Element {
    *
    * @param id - the id of the item to update.
    */
-  function updateTask(id: string): void {
-    // Use the nullish coalescing operator to assign default empty strings if prompt returns null.
-    const text = prompt("Item Name") ?? ""
-    const quantity = prompt("Quantity") ?? ""
+  async function updateTask(id: string): Promise<void> {
+    const current = items.find((item) => item.id === id)
 
-    // Optionally, you could check if text or quantity are empty
-    // and handle the case accordingly.
+    type EditResult = { text: string; quantity: string }
 
-    // Update state using the current items
-    const updatedItems = items.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          text,
-          quantity
+    const { value, isConfirmed } = await Swal.fire<EditResult>({
+      title: "Edit Item",
+      html: `
+        <input id="swal-text" class="swal2-input" placeholder="Item Name" value="${current?.text ?? ""}">
+        <input id="swal-quantity" class="swal2-input" placeholder="Quantity" value="${current?.quantity ?? ""}">
+      `,
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      preConfirm: (): EditResult | false => {
+        const text = (document.getElementById("swal-text") as HTMLInputElement).value.trim()
+        const quantity = (document.getElementById("swal-quantity") as HTMLInputElement).value.trim()
+
+        if (!text || !quantity) {
+          Swal.showValidationMessage("Both item name and quantity are required.")
+          return false
         }
+
+        return { text, quantity }
       }
-      return item
     })
+
+    if (!isConfirmed || value === undefined) {
+      return
+    }
+
+    const updatedItems = items.map((item) =>
+      item.id === id ? { ...item, text: value.text, quantity: value.quantity } : item
+    )
+
+    setItems(updatedItems)
+    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
 
     Swal.fire({
       icon: "success",
       title: "Success!",
       text: "Item updated!"
     })
-
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
-    setItems(updatedItems) // Update state without reloading.
   }
 
   return (
