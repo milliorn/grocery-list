@@ -46,11 +46,11 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
     } else {
       // If validation passes, call the provided onSave callback with the item data.
       onSave({ text, quantity })
-    }
 
-    // Reset the input fields after submission.
-    setText("")
-    setQuantity("")
+      // Reset the input fields only after a successful submission.
+      setText("")
+      setQuantity("")
+    }
   }
 
   return (
