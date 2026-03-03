@@ -26,7 +26,7 @@ function GroceryItem({
     <div className="flex justify-between max-w-full px-5 py-3 mx-auto my-2 overflow-scroll rounded-md cursor-pointer item bg-zinc-100">
       {/* Render the quantity component that displays item details */}
       <ItemsQuantity item={item} />
-      {ItemEditDelete({ onDelete, item, onEdit })}
+      <ItemEditDelete onDelete={onDelete} item={item} onEdit={onEdit} />
     </div>
   )
 }
