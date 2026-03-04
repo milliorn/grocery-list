@@ -1,10 +1,10 @@
-import { GroceryItemsProps } from "./GroceryItemsProps"
+import { GroceryItem } from "./GroceryItem"
 
 /**
  * Props for the ItemsQuantity component.
  *
- * @property {GroceryItemsProps} item - The grocery item data containing the text and quantity.
+ * @property {GroceryItem} item - The grocery item data containing the text and quantity.
  */
 export type ItemsQuantityProps = {
-  item: GroceryItemsProps
+  item: GroceryItem
 }

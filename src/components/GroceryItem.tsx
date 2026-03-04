@@ -8,7 +8,7 @@ import { GroceryItemProps } from "../props/GroceryItemProps"
  * It displays the item's quantity and includes edit and delete functionality.
  *
  * @param {GroceryItemProps} props - The properties for the GroceryItem component.
- * @param {import("../props/GroceryItemsProps").GroceryItemsProps} props.item -
+ * @param {import("../props/GroceryItem").GroceryItem} props.item -
  *   The grocery item data (including id, text, and quantity).
  * @param {(id: string) => void} props.onDelete -
  *   Callback function triggered when the delete action is requested; receives the item's id.

@@ -7,7 +7,7 @@ import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
 import Items from "./components/Items"
 /* props */
-import { GroceryItemsProps } from "./props/GroceryItemsProps"
+import { GroceryItem } from "./props/GroceryItem"
 /* constants */
 import { STORAGE_KEY } from "./constants"
 
@@ -19,7 +19,7 @@ type EditResult = { text: string; quantity: string }
  * @returns JSX.Element
  */
 function App(): JSX.Element {
-  const [items, setItems] = useState<GroceryItemsProps[]>([])
+  const [items, setItems] = useState<GroceryItem[]>([])
   const [showItem, setShowItem] = useState(false)
 
   // Read from local storage once when the component mounts
@@ -27,7 +27,7 @@ function App(): JSX.Element {
     const storedGrocery = localStorage.getItem(STORAGE_KEY)
     if (storedGrocery !== null && storedGrocery !== "") {
       try {
-        setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
+        setItems(JSON.parse(storedGrocery) as GroceryItem[])
       } catch {
         localStorage.removeItem(STORAGE_KEY)
       }
@@ -39,8 +39,8 @@ function App(): JSX.Element {
    *
    * @param item - an object containing item properties except id.
    */
-  function createItem(item: Omit<GroceryItemsProps, "id">): void {
-    const newItem: GroceryItemsProps = {
+  function createItem(item: Omit<GroceryItem, "id">): void {
+    const newItem: GroceryItem = {
       id: uuidv4(),
       ...item // This will now include text and quantity from item
     }

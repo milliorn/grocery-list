@@ -10,7 +10,7 @@ import { ItemsProps } from "../props/ItemsProps"
  * delete and edit actions to each GroceryItem.
  *
  * @param {ItemsProps} props - The properties for the Items component.
- * @param {import("../props/GroceryItemsProps").GroceryItemsProps[]} props.items -
+ * @param {import("../props/GroceryItem").GroceryItem[]} props.items -
  *   An array of grocery items to be rendered.
  * @param {(id: string) => void} props.onDelete - Callback function invoked with an item's id when a delete action is triggered.
  * @param {(id: string) => void} props.onEdit - Callback function invoked with an item's id when an edit action is initiated.
