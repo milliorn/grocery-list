@@ -57,8 +57,9 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
     <form className="mb-4 add-form" onSubmit={onSubmit}>
       {/* Input for the grocery item name */}
       <div className="mx-0 my-4 form-control">
-        <label className="block text-xl sm:text-2xl md:text-3xl">Item</label>
+        <label htmlFor="item-text" className="block text-xl sm:text-2xl md:text-3xl">Item</label>
         <input
+          id="item-text"
           className="w-full h-10 px-2 py-1 m-1 text-lg focus:outline-none text-zinc-900 bg-white"
           type="text"
           placeholder="Example: Bread"
@@ -69,10 +70,11 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
 
       {/* Input for the grocery item quantity */}
       <div className="mx-0 my-4 form-control">
-        <label className="block text-xl sm:text-2xl md:text-3xl">
+        <label htmlFor="item-quantity" className="block text-xl sm:text-2xl md:text-3xl">
           Quantity
         </label>
         <input
+          id="item-quantity"
           className="w-full h-10 px-2 py-1 m-1 text-lg focus:outline-none text-zinc-900 bg-white"
           type="text"
           placeholder="Example: 1 loaf"
