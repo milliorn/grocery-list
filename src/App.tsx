@@ -129,9 +129,9 @@ function App(): JSX.Element {
 
       {showItem && <AddGroceryItem onSave={createItem} />}
 
-      <h3 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+      <h2 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
         Items Remaining: {items.length}
-      </h3>
+      </h2>
 
       {items.length > 0 ? (
         <Items items={items} onDelete={deleteItem} onEdit={updateTask} />

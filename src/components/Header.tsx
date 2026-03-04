@@ -17,9 +17,9 @@ function Header({ showForm, changeTextAndColor }: HeaderProps): JSX.Element {
   return (
     <header className="flex items-center justify-between mb-4 header">
       {/* App title */}
-      <h2 className="font-serif text-xl app-header sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+      <h1 className="font-serif text-xl app-header sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
         Grocery List
-      </h2>
+      </h1>
       {/*
         Button component:
         - The color toggles between red and green based on the changeTextAndColor flag.
