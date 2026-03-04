@@ -11,6 +11,8 @@ import { GroceryItemsProps } from "./props/GroceryItemsProps"
 /* constants */
 import { STORAGE_KEY } from "./constants"
 
+type EditResult = { text: string; quantity: string }
+
 /**
  * Main application component.
  *
@@ -77,8 +79,6 @@ function App(): JSX.Element {
    */
   async function updateTask(id: string): Promise<void> {
     const current = items.find((item) => item.id === id)
-
-    type EditResult = { text: string; quantity: string }
 
     const { value, isConfirmed } = await Swal.fire<EditResult>({
       title: "Edit Item",
