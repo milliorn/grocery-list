@@ -15,12 +15,15 @@ export function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
   return (
     // Container div with responsive text sizing
     <div className="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
-      {/* Icon container with spacing, blue text color, and pointer cursor */}
-      <div className="my-1.5 text-blue-500 cursor-pointer editIcon">
-        {/* FaPencilAlt icon represents the edit action.
-            Clicking the icon will trigger the onEdit callback with the item's id. */}
-        <FaPencilAlt onClick={() => onEdit(item.id)} />
-      </div>
+      {/* Button with blue color and pointer cursor for editing */}
+      <button
+        type="button"
+        aria-label="Edit item"
+        className="my-1.5 text-blue-500 cursor-pointer editIcon bg-transparent border-none p-0"
+        onClick={() => onEdit(item.id)}
+      >
+        <FaPencilAlt />
+      </button>
     </div>
   )
 }
