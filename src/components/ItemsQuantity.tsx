@@ -1,5 +1,5 @@
 import { JSX } from "react"
-import { GroceryItemsProps } from "../props/GroceryItemsProps"
+import { ItemsQuantityProps } from "../props/ItemsQuantityProps"
 
 /**
  * ItemsQuantity component renders the details of a grocery item.
@@ -11,11 +11,7 @@ import { GroceryItemsProps } from "../props/GroceryItemsProps"
  * @param {GroceryItemsProps} props.item - The grocery item data containing the text and quantity.
  * @returns {JSX.Element} The rendered component showing the grocery item's details.
  */
-export function ItemsQuantity({
-  item
-}: {
-  item: GroceryItemsProps
-}): JSX.Element {
+export function ItemsQuantity({ item }: ItemsQuantityProps): JSX.Element {
   return (
     <div className="text-zinc-900">
       {/* Display the item name with label */}
