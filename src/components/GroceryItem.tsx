@@ -23,7 +23,7 @@ function GroceryItem({
   onEdit
 }: GroceryItemProps): JSX.Element {
   return (
-    <div className="flex justify-between max-w-full px-5 py-3 mx-auto my-2 overflow-auto rounded-md cursor-pointer item bg-zinc-100">
+    <div className="flex justify-between max-w-full px-5 py-3 mx-auto my-2 overflow-auto rounded-md item bg-zinc-100">
       {/* Render the quantity component that displays item details */}
       <ItemsQuantity item={item} />
       <ItemEditDelete onDelete={onDelete} item={item} onEdit={onEdit} />
