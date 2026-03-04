@@ -1,3 +1,5 @@
+import { GroceryItem } from "./GroceryItem"
+
 /**
  * Props for the AddGroceryItem component.
  *
@@ -9,11 +11,9 @@ export type AddGroceryItemProps = {
   /**
    * Callback function that is called when a grocery item is created.
    *
-   * @param item - An object containing:
-   *   - `text`: The description of the grocery item.
-   *   - `quantity`: The quantity of the grocery item.
+   * @param item - A grocery item without an id (id is assigned on creation).
    *
    * This function does not return any value.
    */
-  onSave: (item: { text: string; quantity: string }) => void
+  onSave: (item: Omit<GroceryItem, "id">) => void
 }
