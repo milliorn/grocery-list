@@ -23,21 +23,24 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
   function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault() // Prevent page reload on form submission
 
+    const trimmedText = text.trim()
+    const trimmedQuantity = quantity.trim()
+
     // Validate the input: if both fields are empty, or one is missing,
     // trigger an appropriate error alert using SweetAlert2.
-    if (!text && !quantity) {
+    if (!trimmedText && !trimmedQuantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add item and quantity or close the form."
       })
-    } else if (!text && quantity) {
+    } else if (!trimmedText && trimmedQuantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add your item."
       })
-    } else if (text && !quantity) {
+    } else if (trimmedText && !trimmedQuantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
@@ -45,20 +48,21 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
       })
     } else {
       // If validation passes, call the provided onSave callback with the item data.
-      onSave({ text, quantity })
-    }
+      onSave({ text: trimmedText, quantity: trimmedQuantity })
 
-    // Reset the input fields after submission.
-    setText("")
-    setQuantity("")
+      // Reset the input fields only after a successful submission.
+      setText("")
+      setQuantity("")
+    }
   }
 
   return (
     <form className="mb-4 add-form" onSubmit={onSubmit}>
       {/* Input for the grocery item name */}
       <div className="mx-0 my-4 form-control">
-        <label className="block text-xl sm:text-2xl md:text-3xl">Item</label>
+        <label htmlFor="item-text" className="block text-xl sm:text-2xl md:text-3xl">Item</label>
         <input
+          id="item-text"
           className="w-full h-10 px-2 py-1 m-1 text-lg focus:outline-none text-zinc-900 bg-white"
           type="text"
           placeholder="Example: Bread"
@@ -69,10 +73,11 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
 
       {/* Input for the grocery item quantity */}
       <div className="mx-0 my-4 form-control">
-        <label className="block text-xl sm:text-2xl md:text-3xl">
+        <label htmlFor="item-quantity" className="block text-xl sm:text-2xl md:text-3xl">
           Quantity
         </label>
         <input
+          id="item-quantity"
           className="w-full h-10 px-2 py-1 m-1 text-lg focus:outline-none text-zinc-900 bg-white"
           type="text"
           placeholder="Example: 1 loaf"

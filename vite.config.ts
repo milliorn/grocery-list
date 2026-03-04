@@ -9,7 +9,7 @@
  * @returns {import('vite').UserConfig} Vite configuration object.
  */
 import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 
 export default defineConfig({
   // Register the React plugin to enable JSX support and fast refresh in development.

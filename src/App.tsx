@@ -8,6 +8,10 @@ import Header from "./components/Header"
 import Items from "./components/Items"
 /* props */
 import { GroceryItemsProps } from "./props/GroceryItemsProps"
+/* constants */
+import { STORAGE_KEY } from "./constants"
+
+type EditResult = { text: string; quantity: string }
 
 /**
  * Main application component.
@@ -20,10 +24,13 @@ function App(): JSX.Element {
 
   // Read from local storage once when the component mounts
   useEffect(() => {
-    const storedGrocery = localStorage.getItem("itemAdded")
-    // Instead of using a simple truthy check, explicitly ensure that storedGrocery is neither null nor empty
+    const storedGrocery = localStorage.getItem(STORAGE_KEY)
     if (storedGrocery !== null && storedGrocery !== "") {
-      setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
+      try {
+        setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
+      } catch {
+        localStorage.removeItem(STORAGE_KEY)
+      }
     }
   }, [])
 
@@ -47,7 +54,7 @@ function App(): JSX.Element {
       text: "Item added!"
     })
 
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
   }
 
   /**
@@ -65,7 +72,7 @@ function App(): JSX.Element {
       text: "Item deleted!"
     })
 
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
   }
 
   /**
@@ -73,55 +80,80 @@ function App(): JSX.Element {
    *
    * @param id - the id of the item to update.
    */
-  function updateTask(id: string): void {
-    // Use the nullish coalescing operator to assign default empty strings if prompt returns null.
-    const text = prompt("Item Name") ?? ""
-    const quantity = prompt("Quantity") ?? ""
+  async function updateTask(id: string): Promise<void> {
+    const current = items.find((item) => item.id === id)
 
-    // Optionally, you could check if text or quantity are empty
-    // and handle the case accordingly.
+    const { value, isConfirmed } = await Swal.fire<EditResult>({
+      title: "Edit Item",
+      html: `
+        <input id="swal-text" class="swal2-input" placeholder="Item Name">
+        <input id="swal-quantity" class="swal2-input" placeholder="Quantity">
+      `,
+      didOpen: (popup) => {
+        const textInput = popup.querySelector("#swal-text") as HTMLInputElement | null
+        const quantityInput = popup.querySelector("#swal-quantity") as HTMLInputElement | null
 
-    // Update state using the current items
-    const updatedItems = items.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          text,
-          quantity
+        if (textInput) {
+          textInput.value = current?.text ?? ""
         }
+
+        if (quantityInput) {
+          quantityInput.value = current?.quantity ?? ""
+        }
+      },
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      preConfirm: (): EditResult | false => {
+        const text = (document.getElementById("swal-text") as HTMLInputElement).value.trim()
+        const quantity = (document.getElementById("swal-quantity") as HTMLInputElement).value.trim()
+
+        if (!text || !quantity) {
+          Swal.showValidationMessage("Both item name and quantity are required.")
+          return false
+        }
+
+        return { text, quantity }
       }
-      return item
     })
+
+    if (!isConfirmed || value === undefined) {
+      return
+    }
+
+    const updatedItems = items.map((item) =>
+      item.id === id ? { ...item, text: value.text, quantity: value.quantity } : item
+    )
+
+    setItems(updatedItems)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
 
     Swal.fire({
       icon: "success",
       title: "Success!",
       text: "Item updated!"
     })
-
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
-    setItems(updatedItems) // Update state without reloading.
   }
 
   return (
-    <div className="container min-h-20 max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
+    <main className="container min-h-20 max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
       <Header
-        showForm={() => setShowItem(!showItem)}
+        showForm={() => setShowItem((prev) => !prev)}
         changeTextAndColor={showItem}
       />
 
       {showItem && <AddGroceryItem onSave={createItem} />}
 
-      <h3 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+      <h2 className="mb-4 text-lg lg:mb-5 xl:mb-6 2xl:mb-7 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
         Items Remaining: {items.length}
-      </h3>
+      </h2>
 
       {items.length > 0 ? (
         <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
       ) : (
         <span className="text-xl leading-10">No items left!</span>
       )}
-    </div>
+    </main>
   )
 }
 

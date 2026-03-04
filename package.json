@@ -15,19 +15,18 @@
     "tsc-watch": "tsc -w"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.18",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-icons": "^5.5.0",
+    "react-icons": "^4.12.0",
     "sweetalert2": "^11.26.21",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.34.0",
     "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/vite": "^4.2.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.7.0",
     "@vitejs/plugin-react-swc": "^3.11.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.39.3",
