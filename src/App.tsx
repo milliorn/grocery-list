@@ -25,9 +25,12 @@ function App(): JSX.Element {
   // Read from local storage once when the component mounts
   useEffect(() => {
     const storedGrocery = localStorage.getItem(STORAGE_KEY)
-    // Instead of using a simple truthy check, explicitly ensure that storedGrocery is neither null nor empty
     if (storedGrocery !== null && storedGrocery !== "") {
-      setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
+      try {
+        setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
+      } catch {
+        localStorage.removeItem(STORAGE_KEY)
+      }
     }
   }, [])
 
