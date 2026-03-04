@@ -23,21 +23,24 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
   function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault() // Prevent page reload on form submission
 
+    const trimmedText = text.trim()
+    const trimmedQuantity = quantity.trim()
+
     // Validate the input: if both fields are empty, or one is missing,
     // trigger an appropriate error alert using SweetAlert2.
-    if (!text && !quantity) {
+    if (!trimmedText && !trimmedQuantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add item and quantity or close the form."
       })
-    } else if (!text && quantity) {
+    } else if (!trimmedText && trimmedQuantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add your item."
       })
-    } else if (text && !quantity) {
+    } else if (trimmedText && !trimmedQuantity) {
       Swal.fire({
         icon: "error",
         title: "Error!",
@@ -45,7 +48,7 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
       })
     } else {
       // If validation passes, call the provided onSave callback with the item data.
-      onSave({ text, quantity })
+      onSave({ text: trimmedText, quantity: trimmedQuantity })
 
       // Reset the input fields only after a successful submission.
       setText("")
