@@ -123,7 +123,7 @@ function App(): JSX.Element {
   return (
     <main className="container min-h-20 max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
       <Header
-        showForm={() => setShowItem(!showItem)}
+        showForm={() => setShowItem((prev) => !prev)}
         changeTextAndColor={showItem}
       />
 
