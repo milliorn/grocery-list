@@ -8,6 +8,8 @@ import Header from "./components/Header"
 import Items from "./components/Items"
 /* props */
 import { GroceryItemsProps } from "./props/GroceryItemsProps"
+/* constants */
+import { STORAGE_KEY } from "./constants"
 
 /**
  * Main application component.
@@ -20,7 +22,7 @@ function App(): JSX.Element {
 
   // Read from local storage once when the component mounts
   useEffect(() => {
-    const storedGrocery = localStorage.getItem("itemAdded")
+    const storedGrocery = localStorage.getItem(STORAGE_KEY)
     // Instead of using a simple truthy check, explicitly ensure that storedGrocery is neither null nor empty
     if (storedGrocery !== null && storedGrocery !== "") {
       setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
@@ -47,7 +49,7 @@ function App(): JSX.Element {
       text: "Item added!"
     })
 
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
   }
 
   /**
@@ -65,7 +67,7 @@ function App(): JSX.Element {
       text: "Item deleted!"
     })
 
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
   }
 
   /**
@@ -109,7 +111,7 @@ function App(): JSX.Element {
     )
 
     setItems(updatedItems)
-    localStorage.setItem("itemAdded", JSON.stringify(updatedItems))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
 
     Swal.fire({
       icon: "success",
