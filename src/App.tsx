@@ -80,7 +80,7 @@ function App(): JSX.Element {
    *
    * @param id - the id of the item to update.
    */
-  async function updateTask(id: string): Promise<void> {
+  async function updateItem(id: string): Promise<void> {
     const current = items.find((item) => item.id === id)
 
     const { value, isConfirmed } = await Swal.fire<EditResult>({
@@ -149,7 +149,7 @@ function App(): JSX.Element {
       </h2>
 
       {items.length > 0 ? (
-        <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
+        <Items items={items} onDelete={deleteItem} onEdit={updateItem} />
       ) : (
         <span className="text-xl leading-10">No items left!</span>
       )}
