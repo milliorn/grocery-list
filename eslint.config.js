@@ -8,7 +8,7 @@ export default tseslint.config(
   {
     // Global ignore patterns: Excludes the "dist" directory from linting,
     // ensuring build output is not checked for errors.
-    ignores: ["dist", "vite.config.ts"]
+    ignores: ["dist"]
   },
   {
     // Inherit recommended rules from both @eslint/js and TypeScript ESLint.
@@ -96,6 +96,18 @@ export default tseslint.config(
 
       // Encourage optional chaining to simplify expressions dealing with possibly nullish objects.
       "@typescript-eslint/prefer-optional-chain": "error"
+    }
+  },
+  {
+    // Separate block for vite.config.ts which is covered by tsconfig.node.json
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ["vite.config.ts"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: globals.node,
+      parserOptions: {
+        project: "./tsconfig.node.json"
+      }
     }
   }
 )
