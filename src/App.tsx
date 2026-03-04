@@ -86,9 +86,21 @@ function App(): JSX.Element {
     const { value, isConfirmed } = await Swal.fire<EditResult>({
       title: "Edit Item",
       html: `
-        <input id="swal-text" class="swal2-input" placeholder="Item Name" value="${current?.text ?? ""}">
-        <input id="swal-quantity" class="swal2-input" placeholder="Quantity" value="${current?.quantity ?? ""}">
+        <input id="swal-text" class="swal2-input" placeholder="Item Name">
+        <input id="swal-quantity" class="swal2-input" placeholder="Quantity">
       `,
+      didOpen: (popup) => {
+        const textInput = popup.querySelector("#swal-text") as HTMLInputElement | null
+        const quantityInput = popup.querySelector("#swal-quantity") as HTMLInputElement | null
+
+        if (textInput) {
+          textInput.value = current?.text ?? ""
+        }
+
+        if (quantityInput) {
+          quantityInput.value = current?.quantity ?? ""
+        }
+      },
       focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: "Save",
