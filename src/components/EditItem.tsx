@@ -1,6 +1,6 @@
-import { JSX } from "react"
+import type { JSX } from "react"
+import type { EditItemProps } from "../props/EditItemProps"
 import { FaPencilAlt } from "react-icons/fa"
-import { EditItemProps } from "../props/EditItemProps"
 
 /**
  * EditItem component renders a clickable icon that triggers an edit action for a given item.
@@ -20,7 +20,7 @@ function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
         type="button"
         aria-label="Edit item"
         className="my-1.5 text-blue-500 cursor-pointer editIcon bg-transparent border-none p-0"
-        onClick={() => onEdit(item.id)}
+        onClick={() => { void onEdit(item.id) }}
       >
         <FaPencilAlt />
       </button>

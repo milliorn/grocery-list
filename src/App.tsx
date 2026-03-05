@@ -1,17 +1,21 @@
-import { JSX, useEffect, useState } from "react"
-/* npm */
+import type { JSX } from "react"
+import type { GroceryItem } from "./props/GroceryItem"
+import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
-import { v4 as uuidv4 } from "uuid"
-/* components */
 import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
 import Items from "./components/Items"
-/* props */
-import { GroceryItem } from "./props/GroceryItem"
-/* constants */
 import { STORAGE_KEY } from "./constants"
 
-type EditResult = { text: string; quantity: string }
+/**
+ * Represents the data returned from the edit dialog.
+ */
+interface EditResult {
+  /** The updated item name. */
+  text: string
+  /** The updated item quantity. */
+  quantity: string
+}
 
 /**
  * Main application component.
@@ -38,11 +42,12 @@ function App(): JSX.Element {
    * Create a new grocery item.
    *
    * @param item - an object containing item properties except id.
+   * @returns {void} Does not return a value.
    */
   function createItem(item: Omit<GroceryItem, "id">): void {
     const newItem: GroceryItem = {
-      id: uuidv4(),
-      ...item // This will now include text and quantity from item
+      id: crypto.randomUUID(),
+      ...item // Spread the caller-supplied fields (text, quantity) into the new item.
     }
 
     const previousItems = items
@@ -51,14 +56,14 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      Swal.fire({
+      void Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item added!"
       })
     } catch {
       setItems(previousItems)
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to save item. Storage may be full."
@@ -78,14 +83,14 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      Swal.fire({
+      void Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item deleted!"
       })
     } catch {
       setItems(previousItems)
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to delete item. Storage may be full."
@@ -109,8 +114,12 @@ function App(): JSX.Element {
         <input id="swal-quantity" class="swal2-input" placeholder="Quantity">
       `,
       didOpen: (popup) => {
-        const textInput = popup.querySelector("#swal-text") as HTMLInputElement | null
-        const quantityInput = popup.querySelector("#swal-quantity") as HTMLInputElement | null
+        const textInput = popup.querySelector(
+          "#swal-text"
+        ) as HTMLInputElement | null
+        const quantityInput = popup.querySelector(
+          "#swal-quantity"
+        ) as HTMLInputElement | null
 
         if (textInput) {
           textInput.value = current?.text ?? ""
@@ -125,11 +134,19 @@ function App(): JSX.Element {
       confirmButtonText: "Save",
       preConfirm: (): EditResult | false => {
         const popup = Swal.getPopup()
-        const text = (popup?.querySelector("#swal-text") as HTMLInputElement | null)?.value.trim() ?? ""
-        const quantity = (popup?.querySelector("#swal-quantity") as HTMLInputElement | null)?.value.trim() ?? ""
+        const text =
+          (
+            popup?.querySelector("#swal-text") as HTMLInputElement | null
+          )?.value.trim() ?? ""
+        const quantity =
+          (
+            popup?.querySelector("#swal-quantity") as HTMLInputElement | null
+          )?.value.trim() ?? ""
 
         if (!text || !quantity) {
-          Swal.showValidationMessage("Both item name and quantity are required.")
+          Swal.showValidationMessage(
+            "Both item name and quantity are required."
+          )
           return false
         }
 
@@ -143,21 +160,23 @@ function App(): JSX.Element {
 
     const previousItems = items
     const updatedItems = items.map((item) =>
-      item.id === id ? { ...item, text: value.text, quantity: value.quantity } : item
+      item.id === id
+        ? { ...item, text: value.text, quantity: value.quantity }
+        : item
     )
 
     setItems(updatedItems)
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      Swal.fire({
+      void Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item updated!"
       })
     } catch {
       setItems(previousItems)
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to update item. Storage may be full."

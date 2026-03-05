@@ -1,6 +1,6 @@
-import { JSX } from "react"
+import type { JSX } from "react"
+import type { DeleteItemProps } from "../props/DeleteItemProps"
 import { FaTimes } from "react-icons/fa"
-import { DeleteItemProps } from "../props/DeleteItemProps"
 
 /**
  * DeleteItem component renders a clickable icon that triggers deletion of an item.

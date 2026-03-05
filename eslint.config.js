@@ -1,38 +1,40 @@
 import js from "@eslint/js"
-import globals from "globals"
 import reactHooks from "eslint-plugin-react-hooks"
 import reactRefresh from "eslint-plugin-react-refresh"
+import globals from "globals"
 import tseslint from "typescript-eslint"
 
-export default tseslint.config(
-  {
-    // Global ignore patterns: Excludes the "dist" directory from linting,
-    // ensuring build output is not checked for errors.
-    ignores: ["dist"]
-  },
-  {
-    // Inherit recommended rules from both @eslint/js and TypeScript ESLint.
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+// ESLint v9 flat config array — no tseslint.config() wrapper needed since
+// we are not using the extends property inside any config object.
+export default [
+  // Global ignore patterns: excludes build output and CommonJS config files
+  // from linting. Only TypeScript source files are in scope.
+  { ignores: ["dist", "**/*.cjs"] },
 
-    // Specify the file patterns that the configuration applies to.
-    // Here, all TypeScript and TSX files are targeted.
+  // Base configs applied to all matched files.
+  // typescript-eslint's recommended configs already scope TypeScript rules
+  // to *.ts / *.tsx internally.
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+
+  // App source files: set browser globals, project path, plugins, and custom rules.
+  {
     files: ["**/*.{ts,tsx}"],
 
-    // Set the language options:
     languageOptions: {
-      // Specify ECMAScript version for parsing.
-      ecmaVersion: 2020,
+      // Use "latest" so the parser always accepts current ECMAScript syntax.
+      // Tying this to the TS target is a common mistake: the parser version
+      // controls what syntax ESLint can read, not what the compiler emits.
+      ecmaVersion: "latest",
       // Define global variables for a browser environment.
       globals: globals.browser,
-      // **Parser Options for TypeScript:**
-      // This tells the TypeScript ESLint parser where to find your TS configuration,
-      // which is required for rules that require type information.
+      // Tell the TypeScript ESLint parser where to find the TS configuration.
+      // Required for rules that use type information.
       parserOptions: {
-        project: "./tsconfig.app.json" // Change this path if needed (e.g., "./tsconfig.json")
+        project: "./tsconfig.app.json"
       }
     },
 
-    // Define the plugins used to extend ESLint functionalities.
     plugins: {
       // Enforces rules for React Hooks (e.g., rules of hooks, dependency arrays).
       "react-hooks": reactHooks,
@@ -40,20 +42,16 @@ export default tseslint.config(
       "react-refresh": reactRefresh
     },
 
-    // Specify custom rules in addition to the inherited ones.
     rules: {
       // Spread the recommended rules for React Hooks from the plugin.
       ...reactHooks.configs.recommended.rules,
 
-      // Configure the React Refresh plugin:
       // Warn if the component export does not follow the expected pattern,
       // with an option that allows constant export if desired.
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true }
       ],
-
-      // Additional strictness rules to enforce higher code quality and type safety:
 
       // Require strict equality operators (=== and !==) over abstract equality (== and !=).
       eqeqeq: "error",
@@ -67,9 +65,13 @@ export default tseslint.config(
       // Require curly braces for all control structures.
       curly: "error",
 
-      // Require explicit return types on functions (with an allowance for simple expressions).
+      // Disallow variable declarations that shadow variables declared in outer scopes.
+      "no-shadow": "error",
+
+      // Require explicit return types on all functions (not just expressions).
+      // Raised from "warn" to "error" for maximum strictness.
       "@typescript-eslint/explicit-function-return-type": [
-        "warn",
+        "error",
         { allowExpressions: true }
       ],
 
@@ -81,6 +83,9 @@ export default tseslint.config(
 
       // Disallow unsafe assignments that might lead to runtime errors.
       "@typescript-eslint/no-unsafe-assignment": "error",
+
+      // Disallow passing arguments of an unsafe type to function parameters.
+      "@typescript-eslint/no-unsafe-argument": "error",
 
       // Disallow unsafe function calls on values of unknown type.
       "@typescript-eslint/no-unsafe-call": "error",
@@ -95,19 +100,41 @@ export default tseslint.config(
       "@typescript-eslint/prefer-nullish-coalescing": "error",
 
       // Encourage optional chaining to simplify expressions dealing with possibly nullish objects.
-      "@typescript-eslint/prefer-optional-chain": "error"
+      "@typescript-eslint/prefer-optional-chain": "error",
+
+      // Disallow Promises that are created but not properly handled (not awaited,
+      // not .then()'d, and not explicitly discarded with void).
+      "@typescript-eslint/no-floating-promises": "error",
+
+      // Disallow passing async functions to places expecting void-returning callbacks
+      // (e.g. React event handlers), which silently swallows rejections.
+      "@typescript-eslint/no-misused-promises": "error",
+
+      // Disallow awaiting values that are not Thenables.
+      "@typescript-eslint/await-thenable": "error",
+
+      // Disallow async functions that have no await expression.
+      "@typescript-eslint/require-await": "error",
+
+      // Require that type-only imports use 'import type'. Complements the
+      // verbatimModuleSyntax TypeScript compiler option with an ESLint-level check.
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports", fixStyle: "separate-type-imports" }
+      ]
     }
   },
+
+  // vite.config.ts: targets the Node environment and is type-checked using
+  // tsconfig.node.json instead of the application-level tsconfig.app.json.
   {
-    // Separate block for vite.config.ts which is covered by tsconfig.node.json
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["vite.config.ts"],
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: "latest",
       globals: globals.node,
       parserOptions: {
         project: "./tsconfig.node.json"
       }
     }
   }
-)
+]

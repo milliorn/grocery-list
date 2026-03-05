@@ -1,5 +1,5 @@
-import { JSX } from "react"
-import { GroceryItemProps } from "../props/GroceryItemProps"
+import type { JSX } from "react"
+import type { GroceryItemProps } from "../props/GroceryItemProps"
 import ItemEditDelete from "./ItemEditDelete"
 import ItemsQuantity from "./ItemsQuantity"
 
@@ -26,6 +26,7 @@ function GroceryItem({
     <div className="flex justify-between max-w-full px-5 py-3 mx-auto my-2 overflow-auto rounded-md item bg-zinc-100">
       {/* Render the quantity component that displays item details */}
       <ItemsQuantity item={item} />
+      {/* Render the edit and delete controls for this item */}
       <ItemEditDelete onDelete={onDelete} item={item} onEdit={onEdit} />
     </div>
   )

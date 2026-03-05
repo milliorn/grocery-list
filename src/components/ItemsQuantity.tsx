@@ -1,5 +1,5 @@
-import { JSX } from "react"
-import { ItemsQuantityProps } from "../props/ItemsQuantityProps"
+import type { JSX } from "react"
+import type { ItemsQuantityProps } from "../props/ItemsQuantityProps"
 
 /**
  * ItemsQuantity component renders the details of a grocery item.

@@ -1,6 +1,7 @@
-import { JSX, SyntheticEvent, useState } from "react"
+import type { JSX, SyntheticEvent } from "react"
+import type { AddGroceryItemProps } from "../props/AddGroceryItemProps"
+import { useState } from "react"
 import Swal from "sweetalert2"
-import { AddGroceryItemProps } from "../props/AddGroceryItemProps"
 
 /**
  * AddGroceryItem component renders a form that collects item and quantity inputs.
@@ -29,19 +30,19 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
     // Validate the input: if both fields are empty, or one is missing,
     // trigger an appropriate error alert using SweetAlert2.
     if (!trimmedText && !trimmedQuantity) {
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add item and quantity or close the form."
       })
     } else if (!trimmedText && trimmedQuantity) {
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add your item."
       })
     } else if (trimmedText && !trimmedQuantity) {
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add your quantity."
@@ -60,7 +61,12 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
     <form className="mb-4 add-form" onSubmit={onSubmit}>
       {/* Input for the grocery item name */}
       <div className="mx-0 my-4 form-control">
-        <label htmlFor="item-text" className="block text-xl sm:text-2xl md:text-3xl">Item</label>
+        <label
+          htmlFor="item-text"
+          className="block text-xl sm:text-2xl md:text-3xl"
+        >
+          Item
+        </label>
         <input
           id="item-text"
           className="w-full h-10 px-2 py-1 m-1 text-lg focus:outline-none text-zinc-900 bg-white"
@@ -73,7 +79,10 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
 
       {/* Input for the grocery item quantity */}
       <div className="mx-0 my-4 form-control">
-        <label htmlFor="item-quantity" className="block text-xl sm:text-2xl md:text-3xl">
+        <label
+          htmlFor="item-quantity"
+          className="block text-xl sm:text-2xl md:text-3xl"
+        >
           Quantity
         </label>
         <input

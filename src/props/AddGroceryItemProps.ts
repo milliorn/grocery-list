@@ -1,4 +1,4 @@
-import { GroceryItem } from "./GroceryItem"
+import type { GroceryItem } from "./GroceryItem"
 
 /**
  * Props for the AddGroceryItem component.
