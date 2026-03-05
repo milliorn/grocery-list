@@ -25,7 +25,7 @@ function App(): JSX.Element {
   // Read from local storage once when the component mounts
   useEffect(() => {
     const storedGrocery = localStorage.getItem(STORAGE_KEY)
-    if (storedGrocery !== null) {
+    if (storedGrocery !== null && storedGrocery !== "") {
       try {
         setItems(JSON.parse(storedGrocery) as GroceryItem[])
       } catch {

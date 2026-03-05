@@ -7,6 +7,6 @@ import { GroceryItem } from "./GroceryItem"
  * @property {Pick<GroceryItem, "id">} item - The item to be edited, identified by its `id` property.
  */
 export type EditItemProps = {
-  onEdit: (id: string) => void
+  onEdit: (id: string) => Promise<void>
   item: Pick<GroceryItem, "id">
 }
