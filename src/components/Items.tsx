@@ -13,7 +13,7 @@ import { ItemsProps } from "../props/ItemsProps"
  * @param {import("../props/GroceryItem").GroceryItem[]} props.items -
  *   An array of grocery items to be rendered.
  * @param {(id: string) => void} props.onDelete - Callback function invoked with an item's id when a delete action is triggered.
- * @param {(id: string) => void} props.onEdit - Callback function invoked with an item's id when an edit action is initiated.
+ * @param {(id: string) => Promise<void>} props.onEdit - Callback function invoked with an item's id when an edit action is initiated.
  *
  * @returns {JSX.Element} The rendered list of grocery items.
  */
