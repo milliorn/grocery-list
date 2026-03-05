@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 body {
+  /* Set a background color using the OKLCH color space
+       (OKLCH offers perceptually uniform color representation) */
+  background-color: oklch(0.141 0.005 285.823);
   /* Set a full-screen background image from a remote source */
   background-image: url("https://picsum.photos/1920/1080.webp");
-
-  /* Set a background color using the OKLCH color space
-     (OKLCH offers perceptually uniform color representation) */
-  background-color: oklch(0.141 0.005 285.823);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Custom style to hide the scrollbar for elements with the "item" class in WebKit-based browsers */
