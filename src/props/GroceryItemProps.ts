@@ -1,4 +1,4 @@
-import { GroceryItemsProps } from "./GroceryItemsProps"
+import { GroceryItem } from "./GroceryItem"
 
 /**
  * Props for a Grocery Item component.
@@ -7,15 +7,15 @@ import { GroceryItemsProps } from "./GroceryItemsProps"
  * displaying an individual grocery item. It includes the grocery item data
  * as well as callback functions for deleting and editing the item.
  *
- * @property {GroceryItemsProps} item - The data for a single grocery item,
+ * @property {GroceryItem} item - The data for a single grocery item,
  *   which may include properties like id, text, quantity, etc.
  * @property {(id: string) => void} onDelete - A callback function that is
  *   invoked with the item's id when the delete action is triggered.
- * @property {(id: string) => void} onEdit - A callback function that is invoked
+ * @property {(id: string) => Promise<void>} onEdit - A callback function that is invoked
  *   with the item's id when the edit action is initiated.
  */
 export type GroceryItemProps = {
-  item: GroceryItemsProps
+  item: GroceryItem
   onDelete: (id: string) => void
-  onEdit: (id: string) => void
+  onEdit: (id: string) => Promise<void>
 }

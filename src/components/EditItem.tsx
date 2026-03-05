@@ -6,12 +6,12 @@ import { EditItemProps } from "../props/EditItemProps"
  * EditItem component renders a clickable icon that triggers an edit action for a given item.
  *
  * @param {EditItemProps} props - The properties for the EditItem component.
- * @param {(id: string) => void} props.onEdit - Callback function invoked with the item id when the edit icon is clicked.
- * @param {{ id: string }} props.item - The item to be edited. Must include an `id` property.
+ * @param {(id: string) => Promise<void>} props.onEdit - Callback function invoked with the item id when the edit icon is clicked.
+ * @param {Pick<import("../props/GroceryItem").GroceryItem, "id">} props.item - The item to be edited.
  *
  * @returns {JSX.Element} The rendered edit icon component.
  */
-export function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
+function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
   return (
     // Container div with responsive text sizing
     <div className="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
@@ -27,3 +27,5 @@ export function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
     </div>
   )
 }
+
+export default EditItem

@@ -23,6 +23,6 @@
   ],
   "start_url": "/grocery-list/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#18181b",
+  "background_color": "#18181b"
 }

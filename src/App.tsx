@@ -7,7 +7,7 @@ import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
 import Items from "./components/Items"
 /* props */
-import { GroceryItemsProps } from "./props/GroceryItemsProps"
+import { GroceryItem } from "./props/GroceryItem"
 /* constants */
 import { STORAGE_KEY } from "./constants"
 
@@ -19,7 +19,7 @@ type EditResult = { text: string; quantity: string }
  * @returns JSX.Element
  */
 function App(): JSX.Element {
-  const [items, setItems] = useState<GroceryItemsProps[]>([])
+  const [items, setItems] = useState<GroceryItem[]>([])
   const [showItem, setShowItem] = useState(false)
 
   // Read from local storage once when the component mounts
@@ -27,7 +27,7 @@ function App(): JSX.Element {
     const storedGrocery = localStorage.getItem(STORAGE_KEY)
     if (storedGrocery !== null && storedGrocery !== "") {
       try {
-        setItems(JSON.parse(storedGrocery) as GroceryItemsProps[])
+        setItems(JSON.parse(storedGrocery) as GroceryItem[])
       } catch {
         localStorage.removeItem(STORAGE_KEY)
       }
@@ -39,22 +39,31 @@ function App(): JSX.Element {
    *
    * @param item - an object containing item properties except id.
    */
-  function createItem(item: Omit<GroceryItemsProps, "id">): void {
-    const newItem: GroceryItemsProps = {
+  function createItem(item: Omit<GroceryItem, "id">): void {
+    const newItem: GroceryItem = {
       id: uuidv4(),
       ...item // This will now include text and quantity from item
     }
 
+    const previousItems = items
     const updatedItems = [...items, newItem]
     setItems(updatedItems)
 
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "Item added!"
-    })
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Item added!"
+      })
+    } catch {
+      setItems(previousItems)
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to save item. Storage may be full."
+      })
+    }
   }
 
   /**
@@ -63,24 +72,34 @@ function App(): JSX.Element {
    * @param id - the id of the item to delete.
    */
   function deleteItem(id: string): void {
+    const previousItems = items
     const updatedItems = items.filter((item) => item.id !== id)
     setItems(updatedItems)
 
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "Item deleted!"
-    })
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Item deleted!"
+      })
+    } catch {
+      setItems(previousItems)
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to delete item. Storage may be full."
+      })
+    }
   }
 
   /**
    * Update an item by id.
    *
    * @param id - the id of the item to update.
+   * @returns A promise that resolves when the update is complete.
    */
-  async function updateTask(id: string): Promise<void> {
+  async function updateItem(id: string): Promise<void> {
     const current = items.find((item) => item.id === id)
 
     const { value, isConfirmed } = await Swal.fire<EditResult>({
@@ -105,8 +124,9 @@ function App(): JSX.Element {
       showCancelButton: true,
       confirmButtonText: "Save",
       preConfirm: (): EditResult | false => {
-        const text = (document.getElementById("swal-text") as HTMLInputElement).value.trim()
-        const quantity = (document.getElementById("swal-quantity") as HTMLInputElement).value.trim()
+        const popup = Swal.getPopup()
+        const text = (popup?.querySelector("#swal-text") as HTMLInputElement | null)?.value.trim() ?? ""
+        const quantity = (popup?.querySelector("#swal-quantity") as HTMLInputElement | null)?.value.trim() ?? ""
 
         if (!text || !quantity) {
           Swal.showValidationMessage("Both item name and quantity are required.")
@@ -121,22 +141,32 @@ function App(): JSX.Element {
       return
     }
 
+    const previousItems = items
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, text: value.text, quantity: value.quantity } : item
     )
 
     setItems(updatedItems)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
 
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "Item updated!"
-    })
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Item updated!"
+      })
+    } catch {
+      setItems(previousItems)
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to update item. Storage may be full."
+      })
+    }
   }
 
   return (
-    <main className="container min-h-20 max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
+    <main className="container min-h-20 max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 bg-zinc-900/95 p-7">
       <Header
         showForm={() => setShowItem((prev) => !prev)}
         changeTextAndColor={showItem}
@@ -149,9 +179,9 @@ function App(): JSX.Element {
       </h2>
 
       {items.length > 0 ? (
-        <Items items={items} onDelete={deleteItem} onEdit={updateTask} />
+        <Items items={items} onDelete={deleteItem} onEdit={updateItem} />
       ) : (
-        <span className="text-xl leading-10">No items left!</span>
+        <p className="text-xl leading-10">No items left!</p>
       )}
     </main>
   )

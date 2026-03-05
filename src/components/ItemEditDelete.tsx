@@ -1,6 +1,6 @@
 import { JSX } from "react"
-import { DeleteItem } from "./DeleteItem"
-import { EditItem } from "./EditItem"
+import DeleteItem from "./DeleteItem"
+import EditItem from "./EditItem"
 import { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
 
 /**
@@ -10,13 +10,13 @@ import { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
  * by rendering the respective DeleteItem and EditItem components.
  *
  * @param {ItemEditDeleteProps} props - The properties for the component.
- * @param {{ id: string }} props.item - The item to be edited or deleted; must include an `id` property.
+ * @param {Pick<import("../props/GroceryItem").GroceryItem, "id">} props.item - The item to be edited or deleted.
  * @param {(id: string) => void} props.onDelete - Callback function invoked when a delete action is triggered.
- * @param {(id: string) => void} props.onEdit - Callback function invoked when an edit action is triggered.
+ * @param {(id: string) => Promise<void>} props.onEdit - Callback function invoked when an edit action is triggered.
  *
  * @returns {JSX.Element} The rendered component containing delete and edit controls.
  */
-export function ItemEditDelete({
+function ItemEditDelete({
   item,
   onDelete,
   onEdit
@@ -31,3 +31,5 @@ export function ItemEditDelete({
     </div>
   )
 }
+
+export default ItemEditDelete
