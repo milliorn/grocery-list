@@ -1,7 +1,7 @@
-import ItemsQuantity from "./ItemsQuantity"
-import ItemEditDelete from "./ItemEditDelete"
 import { JSX } from "react"
 import { GroceryItemProps } from "../props/GroceryItemProps"
+import ItemEditDelete from "./ItemEditDelete"
+import ItemsQuantity from "./ItemsQuantity"
 
 /**
  * GroceryItem component renders a single grocery item.
