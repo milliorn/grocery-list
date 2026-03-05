@@ -1,6 +1,6 @@
 import { JSX } from "react"
-import { DeleteItem } from "./DeleteItem"
-import { EditItem } from "./EditItem"
+import DeleteItem from "./DeleteItem"
+import EditItem from "./EditItem"
 import { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
 
 /**
@@ -16,7 +16,7 @@ import { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
  *
  * @returns {JSX.Element} The rendered component containing delete and edit controls.
  */
-export function ItemEditDelete({
+function ItemEditDelete({
   item,
   onDelete,
   onEdit
@@ -31,3 +31,5 @@ export function ItemEditDelete({
     </div>
   )
 }
+
+export default ItemEditDelete

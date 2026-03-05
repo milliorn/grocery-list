@@ -1,5 +1,5 @@
-import { ItemsQuantity } from "./ItemsQuantity"
-import { ItemEditDelete } from "./ItemEditDelete"
+import ItemsQuantity from "./ItemsQuantity"
+import ItemEditDelete from "./ItemEditDelete"
 import { JSX } from "react"
 import { GroceryItemProps } from "../props/GroceryItemProps"
 

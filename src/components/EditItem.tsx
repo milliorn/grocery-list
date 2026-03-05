@@ -11,7 +11,7 @@ import { EditItemProps } from "../props/EditItemProps"
  *
  * @returns {JSX.Element} The rendered edit icon component.
  */
-export function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
+function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
   return (
     // Container div with responsive text sizing
     <div className="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
@@ -27,3 +27,5 @@ export function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
     </div>
   )
 }
+
+export default EditItem

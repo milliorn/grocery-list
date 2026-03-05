@@ -11,7 +11,7 @@ import { ItemsQuantityProps } from "../props/ItemsQuantityProps"
  * @param {GroceryItem} props.item - The grocery item data containing the text and quantity.
  * @returns {JSX.Element} The rendered component showing the grocery item's details.
  */
-export function ItemsQuantity({ item }: ItemsQuantityProps): JSX.Element {
+function ItemsQuantity({ item }: ItemsQuantityProps): JSX.Element {
   return (
     <div className="text-zinc-900">
       {/* Display the item name with label */}
@@ -27,3 +27,5 @@ export function ItemsQuantity({ item }: ItemsQuantityProps): JSX.Element {
     </div>
   )
 }
+
+export default ItemsQuantity
