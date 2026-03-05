@@ -70,26 +70,26 @@ The application is optimized for performance, accessibility, best practices, and
 
 ## Tech Stack
 
-| Category | Technology | Version |
-| --- | --- | --- |
-| UI library | React | ^19.2.4 |
-| Language | TypeScript | 5.9.3 |
-| Build tool | Vite | ^7.3.1 |
-| React plugin | @vitejs/plugin-react-swc | ^3.11.0 |
-| CSS framework | Tailwind CSS | ^4.2.1 |
-| Tailwind Vite plugin | @tailwindcss/vite | ^4.2.1 |
-| Tailwind PostCSS | @tailwindcss/postcss | ^4.1.18 |
-| PostCSS | postcss | ^8.5.4 |
-| Autoprefixer | autoprefixer | ^10.4.21 |
-| Alert dialogs | SweetAlert2 | ^11.26.21 |
-| Icon library | react-icons | ^5.6.0 |
-| Unique IDs | uuid | ^11.1.0 |
-| Linter | ESLint | ^9.39.3 |
-| TypeScript ESLint | typescript-eslint | 8.56.1 |
-| React Hooks lint | eslint-plugin-react-hooks | ^5.1.0 |
-| React Refresh lint | eslint-plugin-react-refresh | ^0.4.26 |
-| Formatter | Prettier | 3.8.1 |
-| Deployment | gh-pages | ^6.3.0 |
+| Category | Technology |
+| --- | --- |
+| UI library | React |
+| Language | TypeScript |
+| Build tool | Vite |
+| React plugin | @vitejs/plugin-react-swc |
+| CSS framework | Tailwind CSS |
+| Tailwind Vite plugin | @tailwindcss/vite |
+| Tailwind PostCSS | @tailwindcss/postcss |
+| PostCSS | postcss |
+| Autoprefixer | autoprefixer |
+| Alert dialogs | SweetAlert2 |
+| Icon library | react-icons |
+| Unique IDs | uuid |
+| Linter | ESLint |
+| TypeScript ESLint | typescript-eslint |
+| React Hooks lint | eslint-plugin-react-hooks |
+| React Refresh lint | eslint-plugin-react-refresh |
+| Formatter | Prettier |
+| Deployment | gh-pages |
 
 No backend, no database, no environment variables are required.
 
@@ -489,7 +489,7 @@ All other options use Prettier's defaults: double quotes, 80-character print wid
 The application is deployed to **GitHub Pages** at:
 
 ```text
-https://milliorn.github.io/grocery-list/
+https://<your-github>.github.io/grocery-list/
 ```
 
 ### How it works
