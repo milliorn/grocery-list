@@ -97,6 +97,7 @@ function App(): JSX.Element {
    * Update an item by id.
    *
    * @param id - the id of the item to update.
+   * @returns A promise that resolves when the update is complete.
    */
   async function updateItem(id: string): Promise<void> {
     const current = items.find((item) => item.id === id)
