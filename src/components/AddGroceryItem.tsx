@@ -1,4 +1,4 @@
-import { JSX, useState } from "react"
+import { JSX, SyntheticEvent, useState } from "react"
 import Swal from "sweetalert2"
 import { AddGroceryItemProps } from "../props/AddGroceryItemProps"
 
@@ -18,9 +18,9 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
    * Event handler for form submission.
    * Validates input fields and triggers onSave if both item and quantity are provided.
    *
-   * @param {React.FormEvent<HTMLFormElement>} e - The form submission event.
+   * @param {SyntheticEvent<HTMLFormElement>} e - The form submission event.
    */
-  function onSubmit(e: React.FormEvent<HTMLFormElement>): void {
+  function onSubmit(e: SyntheticEvent<HTMLFormElement>): void {
     e.preventDefault() // Prevent page reload on form submission
 
     const trimmedText = text.trim()
