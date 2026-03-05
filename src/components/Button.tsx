@@ -2,7 +2,7 @@ import { JSX } from "react"
 import { ButtonProps } from "../props/ButtonProps"
 
 const COLOR_CLASS: Record<ButtonProps["color"], string> = {
-  red: "bg-red-500",
+  red: "bg-red-600",
   green: "bg-green-600"
 }
 
