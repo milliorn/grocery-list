@@ -45,6 +45,7 @@ function App(): JSX.Element {
       ...item // This will now include text and quantity from item
     }
 
+    const previousItems = items
     const updatedItems = [...items, newItem]
     setItems(updatedItems)
 
@@ -56,7 +57,7 @@ function App(): JSX.Element {
         text: "Item added!"
       })
     } catch {
-      setItems(items)
+      setItems(previousItems)
       Swal.fire({
         icon: "error",
         title: "Error!",
@@ -71,6 +72,7 @@ function App(): JSX.Element {
    * @param id - the id of the item to delete.
    */
   function deleteItem(id: string): void {
+    const previousItems = items
     const updatedItems = items.filter((item) => item.id !== id)
     setItems(updatedItems)
 
@@ -82,7 +84,7 @@ function App(): JSX.Element {
         text: "Item deleted!"
       })
     } catch {
-      setItems(items)
+      setItems(previousItems)
       Swal.fire({
         icon: "error",
         title: "Error!",
@@ -138,6 +140,7 @@ function App(): JSX.Element {
       return
     }
 
+    const previousItems = items
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, text: value.text, quantity: value.quantity } : item
     )
@@ -152,7 +155,7 @@ function App(): JSX.Element {
         text: "Item updated!"
       })
     } catch {
-      setItems(items)
+      setItems(previousItems)
       Swal.fire({
         icon: "error",
         title: "Error!",
