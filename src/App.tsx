@@ -1,7 +1,6 @@
 import { JSX, useEffect, useState } from "react"
 /* npm */
 import Swal from "sweetalert2"
-import { v4 as uuidv4 } from "uuid"
 /* components */
 import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
@@ -47,7 +46,7 @@ function App(): JSX.Element {
    */
   function createItem(item: Omit<GroceryItem, "id">): void {
     const newItem: GroceryItem = {
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       ...item // Spread the caller-supplied fields (text, quantity) into the new item.
     }
 
