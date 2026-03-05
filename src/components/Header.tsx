@@ -1,6 +1,6 @@
 import type { JSX } from "react"
-import Button from "./Button"
 import type { HeaderProps } from "../props/HeaderProps"
+import Button from "./Button"
 
 /**
  * Header component renders the application's header section.

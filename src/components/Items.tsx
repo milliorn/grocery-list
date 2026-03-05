@@ -1,6 +1,6 @@
 import type { JSX } from "react"
-import GroceryItem from "./GroceryItem"
 import type { ItemsProps } from "../props/ItemsProps"
+import GroceryItem from "./GroceryItem"
 
 /**
  * Items component renders a list of grocery items.

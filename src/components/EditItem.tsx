@@ -1,6 +1,6 @@
 import type { JSX } from "react"
-import { FaPencilAlt } from "react-icons/fa"
 import type { EditItemProps } from "../props/EditItemProps"
+import { FaPencilAlt } from "react-icons/fa"
 
 /**
  * EditItem component renders a clickable icon that triggers an edit action for a given item.

@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react"
 import type { JSX } from "react"
-/* npm */
+import type { GroceryItem } from "./props/GroceryItem"
+import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
-/* components */
 import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
 import Items from "./components/Items"
-/* props */
-import type { GroceryItem } from "./props/GroceryItem"
-/* constants */
 import { STORAGE_KEY } from "./constants"
 
 /**

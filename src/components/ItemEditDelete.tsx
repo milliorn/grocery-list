@@ -1,7 +1,7 @@
 import type { JSX } from "react"
+import type { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
 import DeleteItem from "./DeleteItem"
 import EditItem from "./EditItem"
-import type { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
 
 /**
  * Renders the delete and edit controls for a given item.
