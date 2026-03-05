@@ -48,13 +48,21 @@ function App(): JSX.Element {
     const updatedItems = [...items, newItem]
     setItems(updatedItems)
 
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "Item added!"
-    })
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Item added!"
+      })
+    } catch {
+      setItems(items)
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to save item. Storage may be full."
+      })
+    }
   }
 
   /**
@@ -66,13 +74,21 @@ function App(): JSX.Element {
     const updatedItems = items.filter((item) => item.id !== id)
     setItems(updatedItems)
 
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "Item deleted!"
-    })
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Item deleted!"
+      })
+    } catch {
+      setItems(items)
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to delete item. Storage may be full."
+      })
+    }
   }
 
   /**
