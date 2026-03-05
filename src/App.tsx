@@ -143,13 +143,22 @@ function App(): JSX.Element {
     )
 
     setItems(updatedItems)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
 
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "Item updated!"
-    })
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Item updated!"
+      })
+    } catch {
+      setItems(items)
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to update item. Storage may be full."
+      })
+    }
   }
 
   return (
