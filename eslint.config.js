@@ -99,7 +99,9 @@ export default tseslint.config(
     }
   },
   {
-    // Separate block for vite.config.ts which is covered by tsconfig.node.json
+    // Separate override block for vite.config.ts:
+    // This file targets the Node environment and is type-checked using
+    // tsconfig.node.json instead of the application-level tsconfig.app.json.
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["vite.config.ts"],
     languageOptions: {
