@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo", // File to store incremental build metadata
-    "target": "ES2022", // Set ECMAScript version for compiled output to ES2022
+    "target": "ES2023", // Set ECMAScript version for compiled output to ES2023 (matches lib)
     "lib": ["ES2023"], // Include standard library features from ES2023 in type-checking
     "module": "ESNext", // Use the latest ES module system, compatible with modern bundlers
     "skipLibCheck": true, // Skip type checking of declaration files for faster compilation
@@ -12,6 +12,7 @@
     "isolatedModules": true, // Ensure each file is treated as a separate module for isolated transpilation
     "moduleDetection": "force", // Force every file to be considered a module, even without imports/exports
     "noEmit": true, // Do not emit output files; bundler (e.g., Vite) will handle transpilation and bundling
+    "verbatimModuleSyntax": true, // Enforce 'import type' for type-only imports; errors if a runtime import is type-only
 
     /* Linting */
     "strict": true, // Enable all strict type-checking options
@@ -26,7 +27,8 @@
     "noImplicitReturns": true, // Ensures all code paths in a function return a value
     "forceConsistentCasingInFileNames": true, // Enforces consistent casing in file names across the project
     "useUnknownInCatchVariables": true, // Use 'unknown' instead of 'any' for catch clause variables
-    "noPropertyAccessFromIndexSignature": true // Disallows accessing properties on an index signature without an explicit type assertion
+    "noPropertyAccessFromIndexSignature": true, // Disallows accessing properties on an index signature without an explicit type assertion
+    "noUncheckedIndexedAccess": true // Array indexing and index-signature access return T | undefined, not T
   },
   "include": [
     "vite.config.ts" // Only include your Vite configuration (and other Node scripts as needed)
