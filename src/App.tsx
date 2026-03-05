@@ -122,8 +122,8 @@ function App(): JSX.Element {
       confirmButtonText: "Save",
       preConfirm: (): EditResult | false => {
         const popup = Swal.getPopup()
-        const text = (popup?.querySelector("#swal-text") as HTMLInputElement)?.value.trim() ?? ""
-        const quantity = (popup?.querySelector("#swal-quantity") as HTMLInputElement)?.value.trim() ?? ""
+        const text = (popup?.querySelector("#swal-text") as HTMLInputElement | null)?.value.trim() ?? ""
+        const quantity = (popup?.querySelector("#swal-quantity") as HTMLInputElement | null)?.value.trim() ?? ""
 
         if (!text || !quantity) {
           Swal.showValidationMessage("Both item name and quantity are required.")
