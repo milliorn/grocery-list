@@ -9,11 +9,13 @@ import { STORAGE_KEY } from "./constants"
 
 /**
  * Represents the data returned from the edit dialog.
- *
- * @property {string} text - The updated item name.
- * @property {string} quantity - The updated item quantity.
  */
-type EditResult = { text: string; quantity: string }
+interface EditResult {
+  /** The updated item name. */
+  text: string
+  /** The updated item quantity. */
+  quantity: string
+}
 
 /**
  * Main application component.
