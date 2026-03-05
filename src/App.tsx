@@ -42,6 +42,7 @@ function App(): JSX.Element {
    * Create a new grocery item.
    *
    * @param item - an object containing item properties except id.
+   * @returns {void} Does not return a value.
    */
   function createItem(item: Omit<GroceryItem, "id">): void {
     const newItem: GroceryItem = {
