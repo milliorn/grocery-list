@@ -10,7 +10,7 @@ import { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
  * by rendering the respective DeleteItem and EditItem components.
  *
  * @param {ItemEditDeleteProps} props - The properties for the component.
- * @param {{ id: string }} props.item - The item to be edited or deleted; must include an `id` property.
+ * @param {Pick<import("../props/GroceryItem").GroceryItem, "id">} props.item - The item to be edited or deleted.
  * @param {(id: string) => void} props.onDelete - Callback function invoked when a delete action is triggered.
  * @param {(id: string) => void} props.onEdit - Callback function invoked when an edit action is triggered.
  *
