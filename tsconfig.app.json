@@ -24,6 +24,8 @@
     "moduleDetection": "force",
     // Do not emit compiled JavaScript; Vite handles bundling and output.
     "noEmit": true,
+    // Enforce 'import type' for type-only imports; errors if a runtime import is type-only.
+    "verbatimModuleSyntax": true,
     // Enable the new JSX transform for React.
     "jsx": "react-jsx",
 
@@ -55,7 +57,9 @@
     // Raise an error when 'this' has an implied 'any' type.
     "noImplicitThis": true,
     // Parse all files in strict mode by default.
-    "alwaysStrict": true
+    "alwaysStrict": true,
+    // Array indexing and index-signature access return T | undefined, not T.
+    "noUncheckedIndexedAccess": true
   },
   // Include all source files in the "src" directory for type-checking.
   "include": ["src"]
