@@ -1,6 +1,7 @@
-import { JSX, SyntheticEvent, useState } from "react"
+import { useState } from "react"
+import type { JSX, SyntheticEvent } from "react"
 import Swal from "sweetalert2"
-import { AddGroceryItemProps } from "../props/AddGroceryItemProps"
+import type { AddGroceryItemProps } from "../props/AddGroceryItemProps"
 
 /**
  * AddGroceryItem component renders a form that collects item and quantity inputs.

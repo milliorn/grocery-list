@@ -1,5 +1,5 @@
-import { JSX } from "react"
-import { GroceryItemProps } from "../props/GroceryItemProps"
+import type { JSX } from "react"
+import type { GroceryItemProps } from "../props/GroceryItemProps"
 import ItemEditDelete from "./ItemEditDelete"
 import ItemsQuantity from "./ItemsQuantity"
 

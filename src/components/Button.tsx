@@ -1,5 +1,5 @@
-import { JSX } from "react"
-import { ButtonProps } from "../props/ButtonProps"
+import type { JSX } from "react"
+import type { ButtonProps } from "../props/ButtonProps"
 
 /** Maps each supported color name to its corresponding Tailwind background-color class. */
 const COLOR_CLASS: Record<ButtonProps["color"], string> = {
