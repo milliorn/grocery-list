@@ -19,7 +19,7 @@ function EditItem({ onEdit, item }: EditItemProps): JSX.Element {
       <button
         type="button"
         aria-label="Edit item"
-        className="my-1.5 text-blue-500 cursor-pointer editIcon bg-transparent border-none p-0"
+        className="my-1.5 text-blue-500 cursor-pointer bg-transparent border-none p-0"
         onClick={() => { void onEdit(item.id) }}
       >
         <FaPencilAlt />
