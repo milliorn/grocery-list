@@ -3,7 +3,7 @@ import { ButtonProps } from "../props/ButtonProps"
 
 const COLOR_CLASS: Record<ButtonProps["color"], string> = {
   red: "bg-red-500",
-  green: "bg-green-500"
+  green: "bg-green-600"
 }
 
 /**
