@@ -105,8 +105,9 @@ function App(): JSX.Element {
       showCancelButton: true,
       confirmButtonText: "Save",
       preConfirm: (): EditResult | false => {
-        const text = (document.getElementById("swal-text") as HTMLInputElement).value.trim()
-        const quantity = (document.getElementById("swal-quantity") as HTMLInputElement).value.trim()
+        const popup = Swal.getPopup()
+        const text = (popup?.querySelector("#swal-text") as HTMLInputElement | null)?.value.trim() ?? ""
+        const quantity = (popup?.querySelector("#swal-quantity") as HTMLInputElement | null)?.value.trim() ?? ""
 
         if (!text || !quantity) {
           Swal.showValidationMessage("Both item name and quantity are required.")
@@ -136,7 +137,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <main className="container min-h-20 max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 opacity-95 bg-zinc-900 p-7">
+    <main className="container min-h-20 max-w-2xl mx-auto my-0 overflow-auto text-zinc-50 bg-zinc-900/95 p-7">
       <Header
         showForm={() => setShowItem((prev) => !prev)}
         changeTextAndColor={showItem}
@@ -151,7 +152,7 @@ function App(): JSX.Element {
       {items.length > 0 ? (
         <Items items={items} onDelete={deleteItem} onEdit={updateItem} />
       ) : (
-        <span className="text-xl leading-10">No items left!</span>
+        <p className="text-xl leading-10">No items left!</p>
       )}
     </main>
   )
