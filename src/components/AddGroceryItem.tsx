@@ -30,19 +30,19 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
     // Validate the input: if both fields are empty, or one is missing,
     // trigger an appropriate error alert using SweetAlert2.
     if (!trimmedText && !trimmedQuantity) {
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add item and quantity or close the form."
       })
     } else if (!trimmedText && trimmedQuantity) {
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add your item."
       })
     } else if (trimmedText && !trimmedQuantity) {
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Add your quantity."

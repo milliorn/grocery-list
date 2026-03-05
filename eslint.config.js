@@ -22,8 +22,10 @@ export default [
     files: ["**/*.{ts,tsx}"],
 
     languageOptions: {
-      // Specify ECMAScript version for parsing.
-      ecmaVersion: 2020,
+      // Use "latest" so the parser always accepts current ECMAScript syntax.
+      // Tying this to the TS target is a common mistake: the parser version
+      // controls what syntax ESLint can read, not what the compiler emits.
+      ecmaVersion: "latest",
       // Define global variables for a browser environment.
       globals: globals.browser,
       // Tell the TypeScript ESLint parser where to find the TS configuration.
@@ -63,9 +65,13 @@ export default [
       // Require curly braces for all control structures.
       curly: "error",
 
-      // Require explicit return types on functions (with an allowance for simple expressions).
+      // Disallow variable declarations that shadow variables declared in outer scopes.
+      "no-shadow": "error",
+
+      // Require explicit return types on all functions (not just expressions).
+      // Raised from "warn" to "error" for maximum strictness.
       "@typescript-eslint/explicit-function-return-type": [
-        "warn",
+        "error",
         { allowExpressions: true }
       ],
 
@@ -77,6 +83,9 @@ export default [
 
       // Disallow unsafe assignments that might lead to runtime errors.
       "@typescript-eslint/no-unsafe-assignment": "error",
+
+      // Disallow passing arguments of an unsafe type to function parameters.
+      "@typescript-eslint/no-unsafe-argument": "error",
 
       // Disallow unsafe function calls on values of unknown type.
       "@typescript-eslint/no-unsafe-call": "error",
@@ -91,7 +100,28 @@ export default [
       "@typescript-eslint/prefer-nullish-coalescing": "error",
 
       // Encourage optional chaining to simplify expressions dealing with possibly nullish objects.
-      "@typescript-eslint/prefer-optional-chain": "error"
+      "@typescript-eslint/prefer-optional-chain": "error",
+
+      // Disallow Promises that are created but not properly handled (not awaited,
+      // not .then()'d, and not explicitly discarded with void).
+      "@typescript-eslint/no-floating-promises": "error",
+
+      // Disallow passing async functions to places expecting void-returning callbacks
+      // (e.g. React event handlers), which silently swallows rejections.
+      "@typescript-eslint/no-misused-promises": "error",
+
+      // Disallow awaiting values that are not Thenables.
+      "@typescript-eslint/await-thenable": "error",
+
+      // Disallow async functions that have no await expression.
+      "@typescript-eslint/require-await": "error",
+
+      // Require that type-only imports use 'import type'. Complements the
+      // verbatimModuleSyntax TypeScript compiler option with an ESLint-level check.
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports", fixStyle: "separate-type-imports" }
+      ]
     }
   },
 
@@ -100,7 +130,7 @@ export default [
   {
     files: ["vite.config.ts"],
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: "latest",
       globals: globals.node,
       parserOptions: {
         project: "./tsconfig.node.json"

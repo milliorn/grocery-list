@@ -57,14 +57,14 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      Swal.fire({
+      void Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item added!"
       })
     } catch {
       setItems(previousItems)
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to save item. Storage may be full."
@@ -84,14 +84,14 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      Swal.fire({
+      void Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item deleted!"
       })
     } catch {
       setItems(previousItems)
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to delete item. Storage may be full."
@@ -170,14 +170,14 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      Swal.fire({
+      void Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item updated!"
       })
     } catch {
       setItems(previousItems)
-      Swal.fire({
+      void Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to update item. Storage may be full."
