@@ -1,7 +1,6 @@
 import type { JSX } from "react"
 import type { GroceryItem } from "./props/GroceryItem"
 import { useEffect, useState } from "react"
-import Swal from "sweetalert2"
 import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
 import Items from "./components/Items"
@@ -56,18 +55,20 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      void Swal.fire({
+      // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
+      // initial bundle and only fetched the first time a notification fires.
+      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item added!"
-      })
+      }))
     } catch {
       setItems(previousItems)
-      void Swal.fire({
+      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to save item. Storage may be full."
-      })
+      }))
     }
   }
 
@@ -83,18 +84,20 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      void Swal.fire({
+      // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
+      // initial bundle and only fetched the first time a notification fires.
+      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Item deleted!"
-      })
+      }))
     } catch {
       setItems(previousItems)
-      void Swal.fire({
+      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
         icon: "error",
         title: "Error!",
         text: "Failed to delete item. Storage may be full."
-      })
+      }))
     }
   }
 
@@ -105,6 +108,9 @@ function App(): JSX.Element {
    * @returns A promise that resolves when the update is complete.
    */
   async function updateItem(id: string): Promise<void> {
+    // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
+    // initial bundle and only fetched the first time the edit dialog opens.
+    const { default: Swal } = await import("sweetalert2")
     const current = items.find((item) => item.id === id)
 
     const { value, isConfirmed } = await Swal.fire<EditResult>({
