@@ -11,6 +11,12 @@ import { GroceryItem } from "./props/GroceryItem"
 /* constants */
 import { STORAGE_KEY } from "./constants"
 
+/**
+ * Represents the data returned from the edit dialog.
+ *
+ * @property {string} text - The updated item name.
+ * @property {string} quantity - The updated item quantity.
+ */
 type EditResult = { text: string; quantity: string }
 
 /**
@@ -42,7 +48,7 @@ function App(): JSX.Element {
   function createItem(item: Omit<GroceryItem, "id">): void {
     const newItem: GroceryItem = {
       id: uuidv4(),
-      ...item // This will now include text and quantity from item
+      ...item // Spread the caller-supplied fields (text, quantity) into the new item.
     }
 
     const previousItems = items
