@@ -115,8 +115,12 @@ function App(): JSX.Element {
         <input id="swal-quantity" class="swal2-input" placeholder="Quantity">
       `,
       didOpen: (popup) => {
-        const textInput = popup.querySelector("#swal-text") as HTMLInputElement | null
-        const quantityInput = popup.querySelector("#swal-quantity") as HTMLInputElement | null
+        const textInput = popup.querySelector(
+          "#swal-text"
+        ) as HTMLInputElement | null
+        const quantityInput = popup.querySelector(
+          "#swal-quantity"
+        ) as HTMLInputElement | null
 
         if (textInput) {
           textInput.value = current?.text ?? ""
@@ -131,11 +135,19 @@ function App(): JSX.Element {
       confirmButtonText: "Save",
       preConfirm: (): EditResult | false => {
         const popup = Swal.getPopup()
-        const text = (popup?.querySelector("#swal-text") as HTMLInputElement | null)?.value.trim() ?? ""
-        const quantity = (popup?.querySelector("#swal-quantity") as HTMLInputElement | null)?.value.trim() ?? ""
+        const text =
+          (
+            popup?.querySelector("#swal-text") as HTMLInputElement | null
+          )?.value.trim() ?? ""
+        const quantity =
+          (
+            popup?.querySelector("#swal-quantity") as HTMLInputElement | null
+          )?.value.trim() ?? ""
 
         if (!text || !quantity) {
-          Swal.showValidationMessage("Both item name and quantity are required.")
+          Swal.showValidationMessage(
+            "Both item name and quantity are required."
+          )
           return false
         }
 
@@ -149,7 +161,9 @@ function App(): JSX.Element {
 
     const previousItems = items
     const updatedItems = items.map((item) =>
-      item.id === id ? { ...item, text: value.text, quantity: value.quantity } : item
+      item.id === id
+        ? { ...item, text: value.text, quantity: value.quantity }
+        : item
     )
 
     setItems(updatedItems)

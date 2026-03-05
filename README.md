@@ -70,25 +70,25 @@ The application is optimized for performance, accessibility, best practices, and
 
 ## Tech Stack
 
-| Category | Technology |
-| --- | --- |
-| UI library | React |
-| Language | TypeScript |
-| Build tool | Vite |
-| React plugin | @vitejs/plugin-react-swc |
-| CSS framework | Tailwind CSS |
-| Tailwind Vite plugin | @tailwindcss/vite |
-| Tailwind PostCSS | @tailwindcss/postcss |
-| PostCSS | postcss |
-| Autoprefixer | autoprefixer |
-| Alert dialogs | SweetAlert2 |
-| Icon library | react-icons |
-| Linter | ESLint |
-| TypeScript ESLint | typescript-eslint |
-| React Hooks lint | eslint-plugin-react-hooks |
-| React Refresh lint | eslint-plugin-react-refresh |
-| Formatter | Prettier |
-| Deployment | gh-pages |
+| Category             | Technology                  |
+| -------------------- | --------------------------- |
+| UI library           | React                       |
+| Language             | TypeScript                  |
+| Build tool           | Vite                        |
+| React plugin         | @vitejs/plugin-react-swc    |
+| CSS framework        | Tailwind CSS                |
+| Tailwind Vite plugin | @tailwindcss/vite           |
+| Tailwind PostCSS     | @tailwindcss/postcss        |
+| PostCSS              | postcss                     |
+| Autoprefixer         | autoprefixer                |
+| Alert dialogs        | SweetAlert2                 |
+| Icon library         | react-icons                 |
+| Linter               | ESLint                      |
+| TypeScript ESLint    | typescript-eslint           |
+| React Hooks lint     | eslint-plugin-react-hooks   |
+| React Refresh lint   | eslint-plugin-react-refresh |
+| Formatter            | Prettier                    |
+| Deployment           | gh-pages                    |
 
 No backend, no database, no environment variables are required.
 
@@ -156,11 +156,11 @@ grocery-list/
 
 ## Prerequisites
 
-| Requirement | Minimum version | Notes |
-| --- | --- | --- |
-| Node.js | 18.x | React 19 and Vite 7 both require Node 18+. Node 20 LTS is recommended. |
-| npm | 9.x | Bundled with Node 18+. Yarn or pnpm also work. |
-| Git | Any recent | Only needed to clone the repository. |
+| Requirement | Minimum version | Notes                                                                  |
+| ----------- | --------------- | ---------------------------------------------------------------------- |
+| Node.js     | 18.x            | React 19 and Vite 7 both require Node 18+. Node 20 LTS is recommended. |
+| npm         | 9.x             | Bundled with Node 18+. Yarn or pnpm also work.                         |
+| Git         | Any recent      | Only needed to clone the repository.                                   |
 
 You do **not** need any API keys, environment variables, or accounts to run this project.
 
@@ -208,17 +208,17 @@ npm run preview
 
 All scripts are defined in `package.json` and run with `npm run <script>`.
 
-| Script | Command | Description |
-| --- | --- | --- |
-| `dev` | `vite` | Starts the Vite development server with hot module replacement. |
-| `build` | `tsc -b && vite build` | Type-checks with TypeScript, then produces an optimised production bundle in `dist/`. |
-| `preview` | `vite preview` | Serves the contents of `dist/` locally so you can verify the production build before deploying. |
-| `lint` | `eslint .` | Runs ESLint across all TypeScript/TSX files using the flat config in `eslint.config.js`. |
-| `prettier-check` | `npx prettier . --check` | Checks that all files match the Prettier formatting rules without changing them. Useful in CI. |
-| `prettier-write` | `npx prettier . --write` | Formats all files in place according to `.prettierrc`. Run this before committing. |
-| `tsc-watch` | `tsc -w` | Watches TypeScript files and reports type errors on every save without building. |
-| `deploy-before` | `npm run build` | Alias for `build`. Called automatically by the deploy script to ensure the bundle is fresh. |
-| `deploy` | `gh-pages -d dist` | Pushes the `dist/` directory to the `gh-pages` branch, publishing the site to GitHub Pages. |
+| Script           | Command                  | Description                                                                                     |
+| ---------------- | ------------------------ | ----------------------------------------------------------------------------------------------- |
+| `dev`            | `vite`                   | Starts the Vite development server with hot module replacement.                                 |
+| `build`          | `tsc -b && vite build`   | Type-checks with TypeScript, then produces an optimised production bundle in `dist/`.           |
+| `preview`        | `vite preview`           | Serves the contents of `dist/` locally so you can verify the production build before deploying. |
+| `lint`           | `eslint .`               | Runs ESLint across all TypeScript/TSX files using the flat config in `eslint.config.js`.        |
+| `prettier-check` | `npx prettier . --check` | Checks that all files match the Prettier formatting rules without changing them. Useful in CI.  |
+| `prettier-write` | `npx prettier . --write` | Formats all files in place according to `.prettierrc`. Run this before committing.              |
+| `tsc-watch`      | `tsc -w`                 | Watches TypeScript files and reports type errors on every save without building.                |
+| `deploy-before`  | `npm run build`          | Alias for `build`. Called automatically by the deploy script to ensure the bundle is fresh.     |
+| `deploy`         | `gh-pages -d dist`       | Pushes the `dist/` directory to the `gh-pages` branch, publishing the site to GitHub Pages.     |
 
 ---
 
@@ -301,11 +301,11 @@ Renders a red X icon (`FaTimes` from react-icons/fa) as a `<button>`. Clicking i
 
 A reusable button component accepting three props:
 
-| Prop | Type | Description |
-| --- | --- | --- |
-| `color` | `"red" \| "green"` | Selects the Tailwind background class (`bg-red-600` or `bg-green-800`). |
-| `text` | `string` | Label rendered inside the button. |
-| `onClick` | `() => void` | Click handler. |
+| Prop      | Type               | Description                                                             |
+| --------- | ------------------ | ----------------------------------------------------------------------- |
+| `color`   | `"red" \| "green"` | Selects the Tailwind background class (`bg-red-600` or `bg-green-800`). |
+| `text`    | `string`           | Label rendered inside the button.                                       |
+| `onClick` | `() => void`       | Click handler.                                                          |
 
 ### Data Model
 
@@ -313,8 +313,8 @@ Defined in `src/props/GroceryItem.ts`:
 
 ```typescript
 type GroceryItem = {
-  id: string       // UUID generated by crypto.randomUUID() (native browser API)
-  text: string     // Display name of the grocery item (e.g. "Bread")
+  id: string // UUID generated by crypto.randomUUID() (native browser API)
+  text: string // Display name of the grocery item (e.g. "Bread")
   quantity: string // Free-text quantity (e.g. "2 loaves", "500 g", "1 dozen")
 }
 ```
@@ -362,11 +362,11 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
 
 export default defineConfig({
-  plugins: [react()],               // SWC-powered JSX transform + Fast Refresh
+  plugins: [react()], // SWC-powered JSX transform + Fast Refresh
   css: {
     postcss: "./postcss.config.cjs" // Points PostCSS at the CJS config file
   },
-  base: "/grocery-list/"            // Required for GitHub Pages sub-path hosting
+  base: "/grocery-list/" // Required for GitHub Pages sub-path hosting
 })
 ```
 
@@ -393,18 +393,18 @@ Two TypeScript configs are used (project references pattern):
 
 **`tsconfig.app.json`** — governs all files in `src/`. Key settings:
 
-| Option | Value | Effect |
-| --- | --- | --- |
-| `target` | `ES2020` | Output syntax (Vite transpiles further for older browsers) |
-| `strict` | `true` | Enables the full TypeScript strict suite |
-| `noEmit` | `true` | TypeScript only type-checks; Vite handles bundling |
-| `jsx` | `react-jsx` | Uses the modern React JSX transform (no `import React` needed) |
-| `moduleResolution` | `bundler` | Optimised for Vite/bundler environments |
-| `exactOptionalPropertyTypes` | `true` | Prevents assigning `undefined` to optional props accidentally |
-| `noImplicitReturns` | `true` | Every code path in a function must return a value |
-| `noUnusedLocals` | `true` | Errors on declared but unused variables |
-| `noUnusedParameters` | `true` | Errors on declared but unused function parameters |
-| `useUnknownInCatchVariables` | `true` | Catch clause variable typed as `unknown`, not `any` |
+| Option                       | Value       | Effect                                                         |
+| ---------------------------- | ----------- | -------------------------------------------------------------- |
+| `target`                     | `ES2020`    | Output syntax (Vite transpiles further for older browsers)     |
+| `strict`                     | `true`      | Enables the full TypeScript strict suite                       |
+| `noEmit`                     | `true`      | TypeScript only type-checks; Vite handles bundling             |
+| `jsx`                        | `react-jsx` | Uses the modern React JSX transform (no `import React` needed) |
+| `moduleResolution`           | `bundler`   | Optimised for Vite/bundler environments                        |
+| `exactOptionalPropertyTypes` | `true`      | Prevents assigning `undefined` to optional props accidentally  |
+| `noImplicitReturns`          | `true`      | Every code path in a function must return a value              |
+| `noUnusedLocals`             | `true`      | Errors on declared but unused variables                        |
+| `noUnusedParameters`         | `true`      | Errors on declared but unused function parameters              |
+| `useUnknownInCatchVariables` | `true`      | Catch clause variable typed as `unknown`, not `any`            |
 
 **`tsconfig.node.json`** — governs `vite.config.ts` only. Targets the Node.js environment and uses `tsconfig.node.json` for project-service type information.
 
@@ -433,7 +433,7 @@ Written as a CommonJS module (`.cjs`) because it is loaded by Vite's PostCSS int
 module.exports = {
   plugins: [
     require("@tailwindcss/postcss"), // Processes Tailwind utilities
-    require("autoprefixer")          // Adds vendor prefixes for cross-browser CSS
+    require("autoprefixer") // Adds vendor prefixes for cross-browser CSS
   ]
 }
 ```
@@ -451,18 +451,18 @@ The configuration extends:
 
 Additional strictness rules enabled:
 
-| Rule | Level | Effect |
-| --- | --- | --- |
-| `eqeqeq` | error | Require `===` / `!==` |
-| `no-var` | error | No `var`; use `let` or `const` |
-| `prefer-const` | error | Use `const` when variable is never reassigned |
-| `curly` | error | Require braces for all control structures |
-| `@typescript-eslint/explicit-function-return-type` | warn | Explicit return types on functions |
-| `@typescript-eslint/no-explicit-any` | error | No `any` type |
-| `@typescript-eslint/strict-boolean-expressions` | error | No unintended type coercions in conditions |
-| `@typescript-eslint/no-unsafe-assignment` | error | No unsafe assignments |
-| `@typescript-eslint/prefer-nullish-coalescing` | error | Use `??` instead of `\|\|` where appropriate |
-| `@typescript-eslint/prefer-optional-chain` | error | Use `?.` instead of chained `&&` checks |
+| Rule                                               | Level | Effect                                        |
+| -------------------------------------------------- | ----- | --------------------------------------------- |
+| `eqeqeq`                                           | error | Require `===` / `!==`                         |
+| `no-var`                                           | error | No `var`; use `let` or `const`                |
+| `prefer-const`                                     | error | Use `const` when variable is never reassigned |
+| `curly`                                            | error | Require braces for all control structures     |
+| `@typescript-eslint/explicit-function-return-type` | warn  | Explicit return types on functions            |
+| `@typescript-eslint/no-explicit-any`               | error | No `any` type                                 |
+| `@typescript-eslint/strict-boolean-expressions`    | error | No unintended type coercions in conditions    |
+| `@typescript-eslint/no-unsafe-assignment`          | error | No unsafe assignments                         |
+| `@typescript-eslint/prefer-nullish-coalescing`     | error | Use `??` instead of `\|\|` where appropriate  |
+| `@typescript-eslint/prefer-optional-chain`         | error | Use `?.` instead of chained `&&` checks       |
 
 `vite.config.ts` has a separate override block that uses `tsconfig.node.json` and `globals.node` instead of `globals.browser`.
 
@@ -517,24 +517,24 @@ If you deploy to the root of a domain (e.g. `https://mysite.com/`) change `base`
 
 The app includes a basic Progressive Web App setup:
 
-| File | Purpose |
-| --- | --- |
-| `public/manifest.json` | App name, icon definitions, theme colour, display mode |
-| `public/favicon.ico` | Browser tab icon (16x16 up to 64x64) |
-| `public/apple-touch-icon.png` | iOS home screen icon |
-| `public/android-chrome-192x192.png` | Android home screen icon (192 px) |
-| `public/android-chrome-512x512.png` | Android splash / large icon (512 px) |
+| File                                | Purpose                                                |
+| ----------------------------------- | ------------------------------------------------------ |
+| `public/manifest.json`              | App name, icon definitions, theme colour, display mode |
+| `public/favicon.ico`                | Browser tab icon (16x16 up to 64x64)                   |
+| `public/apple-touch-icon.png`       | iOS home screen icon                                   |
+| `public/android-chrome-192x192.png` | Android home screen icon (192 px)                      |
+| `public/android-chrome-512x512.png` | Android splash / large icon (512 px)                   |
 
 **`manifest.json` settings:**
 
-| Property | Value |
-| --- | --- |
-| `name` | "Grocery List" |
-| `short_name` | "Grocery List" |
-| `start_url` | `/grocery-list/` |
-| `display` | `standalone` (no browser chrome) |
-| `theme_color` | `#18181b` (dark zinc) |
-| `background_color` | `#18181b` |
+| Property           | Value                            |
+| ------------------ | -------------------------------- |
+| `name`             | "Grocery List"                   |
+| `short_name`       | "Grocery List"                   |
+| `start_url`        | `/grocery-list/`                 |
+| `display`          | `standalone` (no browser chrome) |
+| `theme_color`      | `#18181b` (dark zinc)            |
+| `background_color` | `#18181b`                        |
 
 To install the app on a mobile device, open the live URL in Chrome or Safari and use "Add to Home Screen". The app will launch in standalone mode (no address bar).
 
@@ -552,11 +552,11 @@ To install the app on a mobile device, open the live URL in Chrome or Safari and
 
 **Dependabot auto-merge** (`.github/workflows/automerge.yml`):
 
-| Condition | Action |
-| --- | --- |
+| Condition             | Action                          |
+| --------------------- | ------------------------------- |
 | Patch or minor update | Auto-approved and squash-merged |
-| Major update | PR is auto-closed with a label |
-| `update-type` is null | PR is auto-closed with a label |
+| Major update          | PR is auto-closed with a label  |
+| `update-type` is null | PR is auto-closed with a label  |
 
 ### Dependabot
 
@@ -597,14 +597,14 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for t
 
 ## Links
 
-| Resource | URL |
-| --- | --- |
-| Live app | [https://milliorn.github.io/grocery-list/](https://milliorn.github.io/grocery-list/) |
-| React | [https://react.dev/](https://react.dev/) |
-| Vite | [https://vite.dev/](https://vite.dev/) |
-| TypeScript | [https://www.typescriptlang.org/](https://www.typescriptlang.org/) |
-| Tailwind CSS | [https://tailwindcss.com/](https://tailwindcss.com/) |
-| SweetAlert2 | [https://sweetalert2.github.io/](https://sweetalert2.github.io/) |
-| React Icons | [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/) |
-| Picsum Photos | [https://picsum.photos/](https://picsum.photos/) |
-| gh-pages | [https://github.com/tschaub/gh-pages](https://github.com/tschaub/gh-pages) |
+| Resource      | URL                                                                                      |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| Live app      | [https://milliorn.github.io/grocery-list/](https://milliorn.github.io/grocery-list/)     |
+| React         | [https://react.dev/](https://react.dev/)                                                 |
+| Vite          | [https://vite.dev/](https://vite.dev/)                                                   |
+| TypeScript    | [https://www.typescriptlang.org/](https://www.typescriptlang.org/)                       |
+| Tailwind CSS  | [https://tailwindcss.com/](https://tailwindcss.com/)                                     |
+| SweetAlert2   | [https://sweetalert2.github.io/](https://sweetalert2.github.io/)                         |
+| React Icons   | [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/) |
+| Picsum Photos | [https://picsum.photos/](https://picsum.photos/)                                         |
+| gh-pages      | [https://github.com/tschaub/gh-pages](https://github.com/tschaub/gh-pages)               |
