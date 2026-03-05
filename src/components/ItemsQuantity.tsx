@@ -7,8 +7,8 @@ import { ItemsQuantityProps } from "../props/ItemsQuantityProps"
  * This component displays the item name and its quantity in a formatted style,
  * using responsive text sizes and custom CSS classes for styling.
  *
- * @param {Object} props - The properties object.
- * @param {GroceryItem} props.item - The grocery item data containing the text and quantity.
+ * @param {ItemsQuantityProps} props - The properties object.
+ * @param {Pick<import("../props/GroceryItem").GroceryItem, "text" | "quantity">} props.item - The grocery item data containing the text and quantity.
  * @returns {JSX.Element} The rendered component showing the grocery item's details.
  */
 function ItemsQuantity({ item }: ItemsQuantityProps): JSX.Element {
