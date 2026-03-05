@@ -9,10 +9,10 @@ import { GroceryItem } from "./GroceryItem"
  *
  * @property {GroceryItem[]} items - An array of grocery items.
  * @property {(id: string) => void} onDelete - A callback function that is invoked with an item's id when a delete action is triggered.
- * @property {(id: string) => void} onEdit - A callback function that is invoked with an item's id when an edit action is initiated.
+ * @property {(id: string) => Promise<void>} onEdit - A callback function that is invoked with an item's id when an edit action is initiated.
  */
 export type ItemsProps = {
   items: GroceryItem[]
   onDelete: (id: string) => void
-  onEdit: (id: string) => void
+  onEdit: (id: string) => Promise<void>
 }

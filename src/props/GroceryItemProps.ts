@@ -11,11 +11,11 @@ import { GroceryItem } from "./GroceryItem"
  *   which may include properties like id, text, quantity, etc.
  * @property {(id: string) => void} onDelete - A callback function that is
  *   invoked with the item's id when the delete action is triggered.
- * @property {(id: string) => void} onEdit - A callback function that is invoked
+ * @property {(id: string) => Promise<void>} onEdit - A callback function that is invoked
  *   with the item's id when the edit action is initiated.
  */
 export type GroceryItemProps = {
   item: GroceryItem
   onDelete: (id: string) => void
-  onEdit: (id: string) => void
+  onEdit: (id: string) => Promise<void>
 }
