@@ -12,7 +12,7 @@ import { ItemEditDeleteProps } from "../props/ItemEditDeleteProps"
  * @param {ItemEditDeleteProps} props - The properties for the component.
  * @param {Pick<import("../props/GroceryItem").GroceryItem, "id">} props.item - The item to be edited or deleted.
  * @param {(id: string) => void} props.onDelete - Callback function invoked when a delete action is triggered.
- * @param {(id: string) => void} props.onEdit - Callback function invoked when an edit action is triggered.
+ * @param {(id: string) => Promise<void>} props.onEdit - Callback function invoked when an edit action is triggered.
  *
  * @returns {JSX.Element} The rendered component containing delete and edit controls.
  */

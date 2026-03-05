@@ -6,7 +6,7 @@ import { EditItemProps } from "../props/EditItemProps"
  * EditItem component renders a clickable icon that triggers an edit action for a given item.
  *
  * @param {EditItemProps} props - The properties for the EditItem component.
- * @param {(id: string) => void} props.onEdit - Callback function invoked with the item id when the edit icon is clicked.
+ * @param {(id: string) => Promise<void>} props.onEdit - Callback function invoked with the item id when the edit icon is clicked.
  * @param {Pick<import("../props/GroceryItem").GroceryItem, "id">} props.item - The item to be edited.
  *
  * @returns {JSX.Element} The rendered edit icon component.
