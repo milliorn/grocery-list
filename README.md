@@ -3,7 +3,7 @@
 [![pages-build-deployment](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment)
 [![CodeQL](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql)
 
-A fast, fully client-side grocery list manager built with **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS v4**. Add items with quantities, edit them in place, and delete when done. Everything is saved to the browser's `localStorage` with no backend, no account, and no network required after the initial page load.
+A fast, fully client-side grocery list manager built with **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS v4**. Add items with quantities, edit them in place, and delete when done. Everything is saved to the browser's `localStorage` with no backend, no account, and only minimal on-demand network activity for lazily loaded features after the initial page load.
 
 **Live demo:** [https://milliorn.github.io/grocery-list/](https://milliorn.github.io/grocery-list/)
 

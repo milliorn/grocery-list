@@ -56,22 +56,26 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      void getSwal().then((Swal) =>
-        Swal.fire({
-          icon: "success",
-          title: "Success!",
-          text: "Item added!"
-        })
-      )
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "Item added!"
+          })
+        )
+        .catch(console.error)
     } catch {
       setItems(previousItems)
-      void getSwal().then((Swal) =>
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Failed to save item. Storage may be full."
-        })
-      )
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "Failed to save item. Storage may be full."
+          })
+        )
+        .catch(console.error)
     }
   }
 
@@ -87,22 +91,26 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      void getSwal().then((Swal) =>
-        Swal.fire({
-          icon: "success",
-          title: "Success!",
-          text: "Item deleted!"
-        })
-      )
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "Item deleted!"
+          })
+        )
+        .catch(console.error)
     } catch {
       setItems(previousItems)
-      void getSwal().then((Swal) =>
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Failed to delete item. Storage may be full."
-        })
-      )
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "Failed to delete item. Storage may be full."
+          })
+        )
+        .catch(console.error)
     }
   }
 
@@ -113,7 +121,12 @@ function App(): JSX.Element {
    * @returns A promise that resolves when the update is complete.
    */
   async function updateItem(id: string): Promise<void> {
-    const Swal = await getSwal()
+    const Swal = await getSwal().catch((error: unknown) => {
+      console.error("Failed to load SweetAlert2:", error)
+    })
+
+    if (!Swal) return
+
     const current = items.find((item) => item.id === id)
 
     const { value, isConfirmed } = await Swal.fire<EditResult>({
