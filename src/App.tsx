@@ -5,6 +5,7 @@ import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
 import Items from "./components/Items"
 import { STORAGE_KEY } from "./constants"
+import { getSwal } from "./utils/getSwal"
 
 /**
  * Represents the data returned from the edit dialog.
@@ -55,9 +56,7 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
-      // initial bundle and only fetched the first time a notification fires.
-      void import("sweetalert2").then(({ default: Swal }) =>
+      void getSwal().then((Swal) =>
         Swal.fire({
           icon: "success",
           title: "Success!",
@@ -66,7 +65,7 @@ function App(): JSX.Element {
       )
     } catch {
       setItems(previousItems)
-      void import("sweetalert2").then(({ default: Swal }) =>
+      void getSwal().then((Swal) =>
         Swal.fire({
           icon: "error",
           title: "Error!",
@@ -88,9 +87,7 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
-      // initial bundle and only fetched the first time a notification fires.
-      void import("sweetalert2").then(({ default: Swal }) =>
+      void getSwal().then((Swal) =>
         Swal.fire({
           icon: "success",
           title: "Success!",
@@ -99,7 +96,7 @@ function App(): JSX.Element {
       )
     } catch {
       setItems(previousItems)
-      void import("sweetalert2").then(({ default: Swal }) =>
+      void getSwal().then((Swal) =>
         Swal.fire({
           icon: "error",
           title: "Error!",
@@ -116,9 +113,7 @@ function App(): JSX.Element {
    * @returns A promise that resolves when the update is complete.
    */
   async function updateItem(id: string): Promise<void> {
-    // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
-    // initial bundle and only fetched the first time the edit dialog opens.
-    const { default: Swal } = await import("sweetalert2")
+    const Swal = await getSwal()
     const current = items.find((item) => item.id === id)
 
     const { value, isConfirmed } = await Swal.fire<EditResult>({

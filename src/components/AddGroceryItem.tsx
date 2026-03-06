@@ -1,6 +1,7 @@
 import type { JSX, SyntheticEvent } from "react"
 import type { AddGroceryItemProps } from "../props/AddGroceryItemProps"
 import { useState } from "react"
+import { getSwal } from "../utils/getSwal"
 
 /**
  * AddGroceryItem component renders a form that collects item and quantity inputs.
@@ -28,10 +29,8 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
 
     // Validate the input: if both fields are empty, or one is missing,
     // trigger an appropriate error alert using SweetAlert2.
-    // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
-    // initial bundle and only fetched when a validation error actually occurs.
     if (!trimmedText && !trimmedQuantity) {
-      void import("sweetalert2").then(({ default: Swal }) =>
+      void getSwal().then((Swal) =>
         Swal.fire({
           icon: "error",
           title: "Error!",
@@ -39,7 +38,7 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
         })
       )
     } else if (!trimmedText && trimmedQuantity) {
-      void import("sweetalert2").then(({ default: Swal }) =>
+      void getSwal().then((Swal) =>
         Swal.fire({
           icon: "error",
           title: "Error!",
@@ -47,7 +46,7 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
         })
       )
     } else if (trimmedText && !trimmedQuantity) {
-      void import("sweetalert2").then(({ default: Swal }) =>
+      void getSwal().then((Swal) =>
         Swal.fire({
           icon: "error",
           title: "Error!",
