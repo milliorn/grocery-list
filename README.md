@@ -81,8 +81,7 @@ The application is optimized for performance, accessibility, best practices, and
 | Tailwind PostCSS     | @tailwindcss/postcss        |
 | PostCSS              | postcss                     |
 | Autoprefixer         | autoprefixer                |
-| Alert dialogs        | SweetAlert2                 |
-| Icon library         | react-icons                 |
+| Alert dialogs        | SweetAlert2 (lazy-loaded)   |
 | Linter               | ESLint                      |
 | TypeScript ESLint    | typescript-eslint           |
 | React Hooks lint     | eslint-plugin-react-hooks   |
@@ -253,6 +252,8 @@ The root component. It owns the entire application state and exposes CRUD callba
 - **`deleteItem`**: filters out the item by `id`, writes to `localStorage`, and alerts on success or failure.
 - **`updateItem`** (async): opens a SweetAlert2 dialog pre-filled with the current values. On confirmation it maps over the list, replaces the matching item, and persists to `localStorage`.
 
+SweetAlert2 is **lazy-loaded** via dynamic `import()` in all three handlers so the library (~135 KiB) is excluded from the initial bundle and only fetched the first time an alert or dialog fires.
+
 #### `Header` (`src/components/Header.tsx`)
 
 Displays the "Grocery List" heading and a `Button` that toggles the add form. When the form is open the button reads "Close" (red); when closed it reads "Add" (green).
@@ -291,11 +292,11 @@ A simple wrapper that renders `DeleteItem` above `EditItem`, grouping the two ac
 
 #### `EditItem` (`src/components/EditItem.tsx`)
 
-Renders a blue pencil icon (`FaPencilAlt` from react-icons/fa) as a `<button>`. Clicking it calls `onEdit(item.id)`, which triggers the async SweetAlert2 dialog in `App`.
+Renders a blue pencil icon (inline SVG) as a `<button>`. Clicking it calls `onEdit(item.id)`, which triggers the async SweetAlert2 dialog in `App`.
 
 #### `DeleteItem` (`src/components/DeleteItem.tsx`)
 
-Renders a red X icon (`FaTimes` from react-icons/fa) as a `<button>`. Clicking it calls `onDelete(item.id)`.
+Renders a red X icon (inline SVG) as a `<button>`. Clicking it calls `onDelete(item.id)`.
 
 #### `Button` (`src/components/Button.tsx`)
 
@@ -597,7 +598,7 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for t
 
 - Background images courtesy of [Picsum Photos](https://picsum.photos/) — a free, open-source random image service.
 - Alert dialogs powered by [SweetAlert2](https://sweetalert2.github.io/).
-- Icons from [React Icons](https://react-icons.github.io/react-icons/), specifically the Font Awesome 5 (`fa`) set.
+- Edit and delete icons are inline SVGs sourced from the Font Awesome 5 (`fa`) set via [React Icons](https://react-icons.github.io/react-icons/).
 - Scaffolded from the official Vite React-TS template.
 - Thanks to all contributors and Dependabot for keeping dependencies current.
 
@@ -613,6 +614,5 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for t
 | TypeScript    | [https://www.typescriptlang.org/](https://www.typescriptlang.org/)                       |
 | Tailwind CSS  | [https://tailwindcss.com/](https://tailwindcss.com/)                                     |
 | SweetAlert2   | [https://sweetalert2.github.io/](https://sweetalert2.github.io/)                         |
-| React Icons   | [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/) |
 | Picsum Photos | [https://picsum.photos/](https://picsum.photos/)                                         |
 | gh-pages      | [https://github.com/tschaub/gh-pages](https://github.com/tschaub/gh-pages)               |
