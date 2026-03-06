@@ -133,6 +133,8 @@ grocery-list/
 │   │   └── ItemsQuantityProps.ts
 │   ├── styles/
 │   │   └── index.css           # Tailwind import + body background styles
+│   ├── utils/
+│   │   └── getSwal.ts          # Lazy-loads and returns the SweetAlert2 default export
 │   ├── App.tsx                 # Root component; all state and CRUD logic lives here
 │   ├── constants.ts            # STORAGE_KEY constant for localStorage
 │   ├── main.tsx                # React DOM root; mounts App in StrictMode
