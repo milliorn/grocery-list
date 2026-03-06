@@ -31,23 +31,29 @@ function AddGroceryItem({ onSave }: AddGroceryItemProps): JSX.Element {
     // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
     // initial bundle and only fetched when a validation error actually occurs.
     if (!trimmedText && !trimmedQuantity) {
-      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Add item and quantity or close the form."
-      }))
+      void import("sweetalert2").then(({ default: Swal }) =>
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Add item and quantity or close the form."
+        })
+      )
     } else if (!trimmedText && trimmedQuantity) {
-      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Add your item."
-      }))
+      void import("sweetalert2").then(({ default: Swal }) =>
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Add your item."
+        })
+      )
     } else if (trimmedText && !trimmedQuantity) {
-      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Add your quantity."
-      }))
+      void import("sweetalert2").then(({ default: Swal }) =>
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Add your quantity."
+        })
+      )
     } else {
       // If validation passes, call the provided onSave callback with the item data.
       onSave({ text: trimmedText, quantity: trimmedQuantity })

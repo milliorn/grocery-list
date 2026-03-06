@@ -57,18 +57,22 @@ function App(): JSX.Element {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
       // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
       // initial bundle and only fetched the first time a notification fires.
-      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "Item added!"
-      }))
+      void import("sweetalert2").then(({ default: Swal }) =>
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Item added!"
+        })
+      )
     } catch {
       setItems(previousItems)
-      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Failed to save item. Storage may be full."
-      }))
+      void import("sweetalert2").then(({ default: Swal }) =>
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Failed to save item. Storage may be full."
+        })
+      )
     }
   }
 
@@ -86,18 +90,22 @@ function App(): JSX.Element {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
       // Dynamically imported so sweetalert2 (~135 KiB) is excluded from the
       // initial bundle and only fetched the first time a notification fires.
-      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "Item deleted!"
-      }))
+      void import("sweetalert2").then(({ default: Swal }) =>
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Item deleted!"
+        })
+      )
     } catch {
       setItems(previousItems)
-      void import("sweetalert2").then(({ default: Swal }) => Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Failed to delete item. Storage may be full."
-      }))
+      void import("sweetalert2").then(({ default: Swal }) =>
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Failed to delete item. Storage may be full."
+        })
+      )
     }
   }
 

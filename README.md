@@ -578,12 +578,12 @@ The project targets **modern evergreen browsers** (Chrome, Firefox, Edge, Safari
 - `localStorage` is used for persistence — all modern browsers support it.
 - `crypto.randomUUID()` is used for ID generation. This sets the effective minimum versions:
 
-| Browser | Minimum version | Release date |
-| ------- | --------------- | ------------ |
-| Chrome  | 92              | July 2021    |
-| Edge    | 92              | July 2021    |
+| Browser | Minimum version | Release date  |
+| ------- | --------------- | ------------- |
+| Chrome  | 92              | July 2021     |
+| Edge    | 92              | July 2021     |
 | Firefox | 95              | December 2021 |
-| Safari  | 15.4            | March 2022   |
+| Safari  | 15.4            | March 2022    |
 
 ---
 
