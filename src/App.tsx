@@ -1,11 +1,11 @@
 import type { JSX } from "react"
 import type { GroceryItem } from "./props/GroceryItem"
 import { useEffect, useState } from "react"
-import Swal from "sweetalert2"
 import AddGroceryItem from "./components/AddGroceryItem"
 import Header from "./components/Header"
 import Items from "./components/Items"
 import { STORAGE_KEY } from "./constants"
+import { getSwal } from "./utils/getSwal"
 
 /**
  * Represents the data returned from the edit dialog.
@@ -56,18 +56,26 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      void Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "Item added!"
-      })
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "Item added!"
+          })
+        )
+        .catch(console.error)
     } catch {
       setItems(previousItems)
-      void Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Failed to save item. Storage may be full."
-      })
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "Failed to save item. Storage may be full."
+          })
+        )
+        .catch(console.error)
     }
   }
 
@@ -83,18 +91,26 @@ function App(): JSX.Element {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems))
-      void Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "Item deleted!"
-      })
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "Item deleted!"
+          })
+        )
+        .catch(console.error)
     } catch {
       setItems(previousItems)
-      void Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Failed to delete item. Storage may be full."
-      })
+      void getSwal()
+        .then((Swal) =>
+          Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "Failed to delete item. Storage may be full."
+          })
+        )
+        .catch(console.error)
     }
   }
 
@@ -105,6 +121,13 @@ function App(): JSX.Element {
    * @returns A promise that resolves when the update is complete.
    */
   async function updateItem(id: string): Promise<void> {
+    const Swal = await getSwal().catch((error: unknown) => {
+      console.error("Failed to load SweetAlert2:", error)
+      alert("Something went wrong. Please try again.")
+    })
+
+    if (!Swal) {return}
+
     const current = items.find((item) => item.id === id)
 
     const { value, isConfirmed } = await Swal.fire<EditResult>({

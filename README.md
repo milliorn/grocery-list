@@ -3,7 +3,7 @@
 [![pages-build-deployment](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/pages/pages-build-deployment)
 [![CodeQL](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/milliorn/Grocery-List/actions/workflows/github-code-scanning/codeql)
 
-A fast, fully client-side grocery list manager built with **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS v4**. Add items with quantities, edit them in place, and delete when done. Everything is saved to the browser's `localStorage` — no backend, no account, no network required after the initial page load.
+A fast, fully client-side grocery list manager built with **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS v4**. Add items with quantities, edit them in place, and delete when done. Everything is saved to the browser's `localStorage` with no backend, no account, and only minimal on-demand network activity for lazily loaded features after the initial page load.
 
 **Live demo:** [https://milliorn.github.io/grocery-list/](https://milliorn.github.io/grocery-list/)
 
@@ -52,19 +52,19 @@ The application is optimized for performance, accessibility, best practices, and
 
 ## Features
 
-- **Add items** — A togglable form lets you enter an item name and a quantity before saving.
-- **Quantity tracking** — Every item stores a free-text quantity field (e.g. "2 loaves", "500 g", "1 dozen").
-- **Edit items** — A SweetAlert2 dialog pre-fills the current values so you can update the name or quantity without deleting and re-adding.
-- **Delete items** — Remove any item from the list with a single click.
-- **Live item count** — The heading always shows the current number of items remaining in the list.
-- **Form validation** — Client-side checks prevent saving incomplete entries. SweetAlert2 alerts tell you exactly what is missing.
-- **Data persistence** — The list survives page refreshes because it is serialised to `localStorage`. If the storage is corrupt, it is removed gracefully on startup.
-- **Storage error recovery** — If a write to `localStorage` fails (e.g. quota exceeded) the previous list is restored in memory and an error alert is shown.
-- **Responsive layout** — Works on phones, tablets, and desktops. The content area has a maximum width of 672 px and scales text with Tailwind's responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`, `2xl:`).
-- **Progressive Web App (PWA)** — Includes a `manifest.json` with multiple icon sizes, a theme colour, and `display: standalone` so the app can be added to a device home screen.
-- **Accessibility** — Icon buttons carry `aria-label` attributes so screen-reader users know their purpose.
-- **Dark theme** — The UI uses a zinc-900 dark background with zinc-50 light text.
-- **Random background photo** — A full-screen decorative image is served from [Picsum Photos](https://picsum.photos/) each render.
+- **Add items:** A togglable form lets you enter an item name and a quantity before saving.
+- **Quantity tracking:** Every item stores a free-text quantity field (e.g. "2 loaves", "500 g", "1 dozen").
+- **Edit items:** A SweetAlert2 dialog pre-fills the current values so you can update the name or quantity without deleting and re-adding.
+- **Delete items:** Remove any item from the list with a single click.
+- **Live item count:** The heading always shows the current number of items remaining in the list.
+- **Form validation:** Client-side checks prevent saving incomplete entries. SweetAlert2 alerts tell you exactly what is missing.
+- **Data persistence:** The list survives page refreshes because it is serialised to `localStorage`. If the storage is corrupt, it is removed gracefully on startup.
+- **Storage error recovery:** If a write to `localStorage` fails (e.g. quota exceeded) the previous list is restored in memory and an error alert is shown.
+- **Responsive layout:** Works on phones, tablets, and desktops. The content area has a maximum width of 672 px and scales text with Tailwind's responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`, `2xl:`).
+- **Progressive Web App (PWA):** Includes a `manifest.json` with multiple icon sizes, a theme colour, and `display: standalone` so the app can be added to a device home screen.
+- **Accessibility:** Icon buttons carry `aria-label` attributes so screen-reader users know their purpose.
+- **Dark theme:** The UI uses a zinc-900 dark background with zinc-50 light text.
+- **Random background photo:** A full-screen decorative image is served from [Picsum Photos](https://picsum.photos/) each render.
 
 ---
 
@@ -81,8 +81,7 @@ The application is optimized for performance, accessibility, best practices, and
 | Tailwind PostCSS     | @tailwindcss/postcss        |
 | PostCSS              | postcss                     |
 | Autoprefixer         | autoprefixer                |
-| Alert dialogs        | SweetAlert2                 |
-| Icon library         | react-icons                 |
+| Alert dialogs        | SweetAlert2 (lazy-loaded)   |
 | Linter               | ESLint                      |
 | TypeScript ESLint    | typescript-eslint           |
 | React Hooks lint     | eslint-plugin-react-hooks   |
@@ -134,6 +133,8 @@ grocery-list/
 │   │   └── ItemsQuantityProps.ts
 │   ├── styles/
 │   │   └── index.css           # Tailwind import + body background styles
+│   ├── utils/
+│   │   └── getSwal.ts          # Lazy-loads and returns the SweetAlert2 default export
 │   ├── App.tsx                 # Root component; all state and CRUD logic lives here
 │   ├── constants.ts            # STORAGE_KEY constant for localStorage
 │   ├── main.tsx                # React DOM root; mounts App in StrictMode
@@ -193,7 +194,7 @@ This installs both the runtime dependencies (React, SweetAlert2, etc.) and all d
 npm run dev
 ```
 
-Open [http://localhost:5173/grocery-list/](http://localhost:5173/grocery-list/) in your browser. The page updates instantly as you edit source files — no manual reload needed.
+Open [http://localhost:5173/grocery-list/](http://localhost:5173/grocery-list/) in your browser. The page updates instantly as you edit source files, with no manual reload needed.
 
 **Production preview** (test the built output locally):
 
@@ -246,12 +247,14 @@ App                            <- State, CRUD logic, localStorage I/O
 The root component. It owns the entire application state and exposes CRUD callbacks to its children via props.
 
 - **State**:
-  - `items: GroceryItem[]` — the current grocery list.
-  - `showItem: boolean` — controls whether the add form is visible.
+  - `items: GroceryItem[]`: the current grocery list.
+  - `showItem: boolean`: controls whether the add form is visible.
 - **On mount** (`useEffect`): reads `localStorage` with the key `"itemAdded"`, parses JSON, and initialises `items`. Invalid/corrupt data is silently removed from storage.
 - **`createItem`**: generates a UUID, appends the new item, writes to `localStorage`, and shows a success alert. On storage failure it rolls back to the previous list.
 - **`deleteItem`**: filters out the item by `id`, writes to `localStorage`, and alerts on success or failure.
 - **`updateItem`** (async): opens a SweetAlert2 dialog pre-filled with the current values. On confirmation it maps over the list, replaces the matching item, and persists to `localStorage`.
+
+SweetAlert2 is **lazy-loaded** via dynamic `import()` in all three handlers so the library (~135 KiB) is excluded from the initial bundle and only fetched the first time an alert or dialog fires.
 
 #### `Header` (`src/components/Header.tsx`)
 
@@ -291,11 +294,11 @@ A simple wrapper that renders `DeleteItem` above `EditItem`, grouping the two ac
 
 #### `EditItem` (`src/components/EditItem.tsx`)
 
-Renders a blue pencil icon (`FaPencilAlt` from react-icons/fa) as a `<button>`. Clicking it calls `onEdit(item.id)`, which triggers the async SweetAlert2 dialog in `App`.
+Renders a blue pencil icon (inline SVG) as a `<button>`. Clicking it calls `onEdit(item.id)`, which triggers the async SweetAlert2 dialog in `App`.
 
 #### `DeleteItem` (`src/components/DeleteItem.tsx`)
 
-Renders a red X icon (`FaTimes` from react-icons/fa) as a `<button>`. Clicking it calls `onDelete(item.id)`.
+Renders a red X icon (inline SVG) as a `<button>`. Clicking it calls `onDelete(item.id)`.
 
 #### `Button` (`src/components/Button.tsx`)
 
@@ -330,7 +333,7 @@ items       -> GroceryItem[]   (the list)
 showItem    -> boolean         (form visibility)
 ```
 
-Callbacks (`createItem`, `deleteItem`, `updateItem`) are defined in `App` and passed down as props to the components that need them. This is a deliberate choice for a small application — no Redux, Zustand, or Context API overhead.
+Callbacks (`createItem`, `deleteItem`, `updateItem`) are defined in `App` and passed down as props to the components that need them. This is a deliberate choice for a small application, avoiding Redux, Zustand, or Context API overhead.
 
 ### Data Persistence
 
@@ -379,7 +382,7 @@ Key points:
 
 Two TypeScript configs are used (project references pattern):
 
-**`tsconfig.json`** — the composite root. It contains no compiler options of its own; it simply references the two child configs:
+**`tsconfig.json`** is the composite root. It contains no compiler options of its own and simply references the two child configs:
 
 ```json
 {
@@ -391,7 +394,7 @@ Two TypeScript configs are used (project references pattern):
 }
 ```
 
-**`tsconfig.app.json`** — governs all files in `src/`. Key settings:
+**`tsconfig.app.json`** governs all files in `src/`. Key settings:
 
 | Option                       | Value       | Effect                                                         |
 | ---------------------------- | ----------- | -------------------------------------------------------------- |
@@ -406,7 +409,7 @@ Two TypeScript configs are used (project references pattern):
 | `noUnusedParameters`         | `true`      | Errors on declared but unused function parameters              |
 | `useUnknownInCatchVariables` | `true`      | Catch clause variable typed as `unknown`, not `any`            |
 
-**`tsconfig.node.json`** — governs `vite.config.ts` only. Targets the Node.js environment and uses `tsconfig.node.json` for project-service type information.
+**`tsconfig.node.json`** governs `vite.config.ts` only. It targets the Node.js environment and uses `tsconfig.node.json` for project-service type information.
 
 ### Tailwind CSS v4
 
@@ -440,7 +443,7 @@ module.exports = {
 
 ### ESLint
 
-**File:** `eslint.config.js` (flat config — ESLint v9+)
+**File:** `eslint.config.js` (ESLint v9+ flat config)
 
 The configuration extends:
 
@@ -546,9 +549,9 @@ To install the app on a mobile device, open the live URL in Chrome or Safari and
 
 ### GitHub Actions
 
-**Pages build and deployment** — Triggered by pushes. Builds and publishes the site to GitHub Pages. Status shown by the badge at the top of this README.
+**Pages build and deployment** triggers on every push, building and publishing the site to GitHub Pages. Status is shown by the badge at the top of this README.
 
-**CodeQL** — Static security analysis. Scans for known vulnerability patterns in the JavaScript/TypeScript source. Status shown by the badge at the top of this README.
+**CodeQL** provides static security analysis, scanning for known vulnerability patterns in the JavaScript/TypeScript source. Status is shown by the badge at the top of this README.
 
 **Dependabot auto-merge** (`.github/workflows/automerge.yml`):
 
@@ -564,8 +567,8 @@ To install the app on a mobile device, open the live URL in Chrome or Safari and
 
 Dependabot runs on a **monthly** schedule for two ecosystems:
 
-- `npm` — checks all Node.js dependencies. Major version updates are ignored; they require manual review.
-- `github-actions` — checks all Actions versions used in workflows.
+- `npm` checks all Node.js dependencies. Major version updates are ignored and require manual review.
+- `github-actions` checks all Actions versions used in workflows.
 
 ---
 
@@ -575,15 +578,15 @@ The project targets **modern evergreen browsers** (Chrome, Firefox, Edge, Safari
 
 - No Internet Explorer support.
 - No polyfills are shipped.
-- `localStorage` is used for persistence — all modern browsers support it.
+- `localStorage` is used for persistence and is supported by all modern browsers.
 - `crypto.randomUUID()` is used for ID generation. This sets the effective minimum versions:
 
-| Browser | Minimum version | Release date |
-| ------- | --------------- | ------------ |
-| Chrome  | 92              | July 2021    |
-| Edge    | 92              | July 2021    |
+| Browser | Minimum version | Release date  |
+| ------- | --------------- | ------------- |
+| Chrome  | 92              | July 2021     |
+| Edge    | 92              | July 2021     |
 | Firefox | 95              | December 2021 |
-| Safari  | 15.4            | March 2022   |
+| Safari  | 15.4            | March 2022    |
 
 ---
 
@@ -595,9 +598,9 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for t
 
 ## Acknowledgements
 
-- Background images courtesy of [Picsum Photos](https://picsum.photos/) — a free, open-source random image service.
+- Background images are courtesy of [Picsum Photos](https://picsum.photos/), a free open-source random image service.
 - Alert dialogs powered by [SweetAlert2](https://sweetalert2.github.io/).
-- Icons from [React Icons](https://react-icons.github.io/react-icons/), specifically the Font Awesome 5 (`fa`) set.
+- Edit and delete icons are inline SVGs sourced from the Font Awesome 5 (`fa`) set via [React Icons](https://react-icons.github.io/react-icons/).
 - Scaffolded from the official Vite React-TS template.
 - Thanks to all contributors and Dependabot for keeping dependencies current.
 
@@ -605,14 +608,13 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for t
 
 ## Links
 
-| Resource      | URL                                                                                      |
-| ------------- | ---------------------------------------------------------------------------------------- |
-| Live app      | [https://milliorn.github.io/grocery-list/](https://milliorn.github.io/grocery-list/)     |
-| React         | [https://react.dev/](https://react.dev/)                                                 |
-| Vite          | [https://vite.dev/](https://vite.dev/)                                                   |
-| TypeScript    | [https://www.typescriptlang.org/](https://www.typescriptlang.org/)                       |
-| Tailwind CSS  | [https://tailwindcss.com/](https://tailwindcss.com/)                                     |
-| SweetAlert2   | [https://sweetalert2.github.io/](https://sweetalert2.github.io/)                         |
-| React Icons   | [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/) |
-| Picsum Photos | [https://picsum.photos/](https://picsum.photos/)                                         |
-| gh-pages      | [https://github.com/tschaub/gh-pages](https://github.com/tschaub/gh-pages)               |
+| Resource      | URL                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------ |
+| Live app      | [https://milliorn.github.io/grocery-list/](https://milliorn.github.io/grocery-list/) |
+| React         | [https://react.dev/](https://react.dev/)                                             |
+| Vite          | [https://vite.dev/](https://vite.dev/)                                               |
+| TypeScript    | [https://www.typescriptlang.org/](https://www.typescriptlang.org/)                   |
+| Tailwind CSS  | [https://tailwindcss.com/](https://tailwindcss.com/)                                 |
+| SweetAlert2   | [https://sweetalert2.github.io/](https://sweetalert2.github.io/)                     |
+| Picsum Photos | [https://picsum.photos/](https://picsum.photos/)                                     |
+| gh-pages      | [https://github.com/tschaub/gh-pages](https://github.com/tschaub/gh-pages)           |
