@@ -123,9 +123,10 @@ function App(): JSX.Element {
   async function updateItem(id: string): Promise<void> {
     const Swal = await getSwal().catch((error: unknown) => {
       console.error("Failed to load SweetAlert2:", error)
+      alert("Something went wrong. Please try again.")
     })
 
-    if (!Swal) return
+    if (!Swal) {return}
 
     const current = items.find((item) => item.id === id)
 
