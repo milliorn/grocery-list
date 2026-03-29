@@ -126,7 +126,9 @@ function App(): JSX.Element {
       alert("Something went wrong. Please try again.")
     })
 
-    if (!Swal) {return}
+    if (!Swal) {
+      return
+    }
 
     const current = items.find((item) => item.id === id)
 
