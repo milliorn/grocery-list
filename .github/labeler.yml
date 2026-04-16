@@ -1,0 +1,55 @@
+components:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/components/**
+
+props:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/props/**
+
+styles:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/styles/**
+          - "**/*.css"
+
+typescript:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.ts"
+          - "**/*.tsx"
+
+config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - tsconfig*.json
+          - vite.config.ts
+          - postcss.config.cjs
+          - eslint.config.js
+          - .prettierrc
+          - .prettierignore
+          - index.html
+
+github_actions:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/workflows/**
+          - .github/labeler.yml
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - package.json
+          - package-lock.json
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - public/robots.txt
+
+public-assets:
+  - changed-files:
+      - any-glob-to-any-file:
+          - public/**
