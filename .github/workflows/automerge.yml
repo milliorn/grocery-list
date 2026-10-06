@@ -1,8 +1,10 @@
 name: Dependabot reviewer
 
 # Fires whenever Dependabot opens, updates, or reopens a PR targeting main.
-# pull_request_target runs in the context of the base branch, which gives the
-# GITHUB_TOKEN enough permission to approve and merge without extra secrets.
+# pull_request_target runs in the context of the base branch, which gives
+# enough permission to approve and merge. The merge itself is authenticated
+# with DEPENDABOT_REBASE_PAT, not GITHUB_TOKEN (see the env block below for
+# why), so do not remove that secret.
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
