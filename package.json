@@ -15,8 +15,8 @@
     "tsc-watch": "tsc -w"
   },
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "sweetalert2": "^11.26.25"
   },
   "devDependencies": {
